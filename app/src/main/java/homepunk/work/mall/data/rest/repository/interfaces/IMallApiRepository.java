@@ -1,7 +1,8 @@
 package homepunk.work.mall.data.rest.repository.interfaces;
 
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
-import homepunk.work.mall.presentations.login.models.LoginUser;
+import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
 
 /**
@@ -9,5 +10,7 @@ import rx.Single;
  **/
 
 public interface IMallApiRepository {
-    Single<LoginUser> loginByCredentials(LoginCredentials credentials);
+    Single<UserLogin> loginByCredentials(LoginCredentials credentials);
+
+    Single<Malls> fetchMalls(String token);
 }

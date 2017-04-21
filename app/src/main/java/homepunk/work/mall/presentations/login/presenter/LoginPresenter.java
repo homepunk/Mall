@@ -7,15 +7,15 @@ import android.text.TextUtils;
 import homepunk.work.mall.data.rest.repository.interfaces.IMallApiRepository;
 import homepunk.work.mall.data.rest.repository.MallApiRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
-import homepunk.work.mall.presentations.login.models.LoginUser;
+import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
-import homepunk.work.mall.presentations.main.MainActivity;
+import homepunk.work.mall.presentations.main.view.MainMallsActivity;
 import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static homepunk.work.mall.data.Constants.KEY_ID;
+import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 
 
 public class LoginPresenter implements ILoginPresenter {
@@ -32,11 +32,11 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void navigateToHomeScreen(LoginUser user) {
+    public void navigateToHomeScreen(UserLogin user) {
         Context context = view.getContext();
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, MainMallsActivity.class);
 
-        intent.putExtra(KEY_ID, user);
+        intent.putExtra(USER_KEY_ID, user);
 
         context.startActivity(intent);
     }
@@ -67,9 +67,9 @@ public class LoginPresenter implements ILoginPresenter {
                     .loginByCredentials(new LoginCredentials(email, password))
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new SingleSubscriber<LoginUser>() {
+                    .subscribe(new SingleSubscriber<UserLogin>() {
                         @Override
-                        public void onSuccess(LoginUser user) {
+                        public void onSuccess(UserLogin user) {
                             if (view != null) {
                                 view.onLoginSuccess(user);
                                 view.showProgressDialog(false);

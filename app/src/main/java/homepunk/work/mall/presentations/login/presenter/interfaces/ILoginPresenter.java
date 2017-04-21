@@ -1,6 +1,6 @@
 package homepunk.work.mall.presentations.login.presenter.interfaces;
 
-import homepunk.work.mall.presentations.login.models.LoginUser;
+import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
 
 /**
@@ -12,5 +12,5 @@ public interface ILoginPresenter {
 
     void login(String email, String password);
 
-    void navigateToHomeScreen(LoginUser user);
+    void navigateToHomeScreen(UserLogin user);
 }
