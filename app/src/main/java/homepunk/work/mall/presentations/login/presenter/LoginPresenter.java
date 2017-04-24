@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import homepunk.work.mall.data.DataRepository;
-import homepunk.work.mall.data.LocalDataRepository;
-import homepunk.work.mall.data.interfaces.IDataRepository;
-import homepunk.work.mall.data.interfaces.ILocalDataRepository;
+import homepunk.work.mall.data.remote.repository.interfaces.IRemoteRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
@@ -22,7 +19,7 @@ import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
-    private IDataRepository dataRepository;
+    private IRemoteRepository dataRepository;
     private ILocalDataRepository localDataRepository;
 
     public LoginPresenter() {

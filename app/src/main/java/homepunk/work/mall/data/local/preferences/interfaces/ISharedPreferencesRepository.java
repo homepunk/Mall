@@ -1,4 +1,4 @@
-package homepunk.work.mall.data.local.interfaces;
+package homepunk.work.mall.data.local.preferences.interfaces;
 
 /**
  * Created by Homepunk on 24.04.2017.

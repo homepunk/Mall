@@ -1,4 +1,4 @@
-package homepunk.work.mall.data.remote.api;
+package homepunk.work.mall.data.remote.service;
 
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;

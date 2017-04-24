@@ -1,7 +1,6 @@
 package homepunk.work.mall.presentations.main.presenter;
 
-import homepunk.work.mall.data.DataRepository;
-import homepunk.work.mall.data.interfaces.IDataRepository;
+import homepunk.work.mall.data.remote.repository.interfaces.IRemoteRepository;
 import homepunk.work.mall.presentations.main.model.Malls;
 import homepunk.work.mall.presentations.main.presenter.interfaces.IMallsPresenter;
 import homepunk.work.mall.presentations.main.view.interfaces.IMallsView;
@@ -15,7 +14,7 @@ import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
  **/
 
 public class MallsPresenter implements IMallsPresenter {
-    private IDataRepository dataRepository;
+    private IRemoteRepository dataRepository;
     private IMallsView view;
 
     public MallsPresenter() {

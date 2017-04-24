@@ -1,10 +1,10 @@
 package homepunk.work.mall.data.local.interfaces;
 
-/**
- * Created by Homepunk on 24.04.2017.
- **/
+import homepunk.work.mall.data.local.db.interfaces.IDBRepository;
+import homepunk.work.mall.data.local.preferences.interfaces.ISharedPreferencesRepository;
 
 public interface ILocalDataManager {
-    String getUserToken();
-    void saveUserToken(String token);
+    ISharedPreferencesRepository getSharedPreferencesRepository();
+
+    IDBRepository getDBRepository();
 }
