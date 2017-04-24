@@ -2,6 +2,8 @@ package homepunk.work.mall.presentations.main.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import homepunk.work.mall.data.Constants;
+
 import static homepunk.work.mall.data.Constants.MALL_KEY_DESCRIPTION;
 import static homepunk.work.mall.data.Constants.MALL_KEY_ID;
 import static homepunk.work.mall.data.Constants.MALL_KEY_IMAGE;
@@ -72,8 +74,10 @@ public class Mall {
         this.longtitude = longtitude;
     }
 
-    public String getImage() {
-        return image;
+    public String getFullImagePath() {
+        return new StringBuilder()
+                .append(Constants.MALL_IMAGE_BASE_URL)
+                .append(image).toString();
     }
 
     public void setImage(String image) {

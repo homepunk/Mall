@@ -21,4 +21,15 @@ public class Malls {
     public void setMalls(List<Mall> malls) {
         this.malls = malls;
     }
+
+    @Override
+    public String toString() {
+        super.toString();
+        StringBuilder sb = new StringBuilder();
+        for (Mall mall : malls) {
+            sb.append(mall.getName() +  "\n ");
+        }
+
+        return sb.toString();
+    }
 }

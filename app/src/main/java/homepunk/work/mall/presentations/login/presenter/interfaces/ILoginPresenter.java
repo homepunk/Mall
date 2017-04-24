@@ -12,5 +12,5 @@ public interface ILoginPresenter {
 
     void login(String email, String password);
 
-    void navigateToHomeScreen(UserLogin user);
+    void navigateToMainScreen(UserLogin user);
 }

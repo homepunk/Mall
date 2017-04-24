@@ -19,6 +19,7 @@ import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
 import homepunk.work.mall.presentations.login.presenter.LoginPresenter;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
+import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Bind(R.id.login_form) View loginForm;
@@ -40,7 +41,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void onLoginSuccess(UserLogin user) {
-        loginPresenter.navigateToHomeScreen(user);
+        Timber.i("User token " + user.getToken());
+        loginPresenter.navigateToMainScreen(user);
     }
 
     @Override
@@ -92,6 +94,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
         loginPresenter = new LoginPresenter();
         loginPresenter.setView(this);
+
+        email.setText(R.string.testEmail);
+        password.setText(R.string.testPassword);
 
     }
 

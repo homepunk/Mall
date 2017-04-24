@@ -1,5 +1,6 @@
-package homepunk.work.mall.data.rest.api;
+package homepunk.work.mall.data.remote;
 
+import homepunk.work.mall.data.remote.api.MallApi;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -17,11 +18,11 @@ public class MallApiManager {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         client = new OkHttpClient
-                .Builder()
-                .retryOnConnectionFailure(false)
-                .addInterceptor(interceptor)
-                .build();
-    }
+            .Builder()
+            .retryOnConnectionFailure(false)
+//                .addInterceptor(interceptor)
+            .build();
+}
 
     public static MallApi getInstance() {
         if (mallApi == null) {

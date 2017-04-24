@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import homepunk.work.mall.data.rest.repository.interfaces.IMallApiRepository;
-import homepunk.work.mall.data.rest.repository.MallApiRepository;
+import homepunk.work.mall.data.local.repository.SharedPreferencesRepository;
+import homepunk.work.mall.data.local.interfaces.ISharedPreferencesRepository;
+import homepunk.work.mall.data.remote.repository.MallApiRepository;
+import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
+import homepunk.work.mall.presentations.App;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
-import homepunk.work.mall.presentations.main.view.MainMallsActivity;
+import homepunk.work.mall.presentations.main.view.MallsActivity;
 import rx.SingleSubscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -21,9 +24,11 @@ import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
     private IMallApiRepository mallApiRepository;
+    private ISharedPreferencesRepository sharedPreferencesRepository;
 
     public LoginPresenter() {
         this.mallApiRepository = new MallApiRepository();
+        this.sharedPreferencesRepository = new SharedPreferencesRepository(App.getContext());
     }
 
     @Override
@@ -32,9 +37,9 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void navigateToHomeScreen(UserLogin user) {
+    public void navigateToMainScreen(UserLogin user) {
         Context context = view.getContext();
-        Intent intent = new Intent(context, MainMallsActivity.class);
+        Intent intent = new Intent(context, MallsActivity.class);
 
         intent.putExtra(USER_KEY_ID, user);
 
@@ -73,6 +78,8 @@ public class LoginPresenter implements ILoginPresenter {
                             if (view != null) {
                                 view.onLoginSuccess(user);
                                 view.showProgressDialog(false);
+
+                                sharedPreferencesRepository.storeAccessToken(user.getToken());
                             }
                         }
 

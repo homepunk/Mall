@@ -1,8 +1,8 @@
-package homepunk.work.mall.data.rest.repository;
+package homepunk.work.mall.data.remote.repository;
 
-import homepunk.work.mall.data.rest.api.MallApi;
-import homepunk.work.mall.data.rest.api.MallApiManager;
-import homepunk.work.mall.data.rest.repository.interfaces.IMallApiRepository;
+import homepunk.work.mall.data.remote.api.MallApi;
+import homepunk.work.mall.data.remote.MallApiManager;
+import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.main.model.Malls;

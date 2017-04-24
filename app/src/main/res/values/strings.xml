@@ -13,4 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="testEmail">hp@test.com</string>
+    <string name="testPassword">1111</string>
+    <string name="error_image_loading">Error image loading</string>
 </resources>
