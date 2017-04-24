@@ -1,12 +1,12 @@
 package homepunk.work.mall.data;
 
 import homepunk.work.mall.data.interfaces.IDataRepository;
-import homepunk.work.mall.data.local.LocalDataManager;
-import homepunk.work.mall.data.local.interfaces.ILocalDataManager;
+import homepunk.work.mall.data.interfaces.ILocalDataRepository;
 import homepunk.work.mall.data.remote.repository.MallApiRepository;
 import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.presentations.main.model.Mall;
 import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
 
@@ -16,20 +16,25 @@ import rx.Single;
 
 public class DataRepository implements IDataRepository {
     private IMallApiRepository networkRepository;
-    private ILocalDataManager localDataManager;
+    private ILocalDataRepository localDataRepository;
 
     public DataRepository() {
-        this.localDataManager = new LocalDataManager();
+        this.localDataRepository = new LocalDataRepository();
         this.networkRepository = new MallApiRepository();
     }
 
     @Override
-    public Single<UserLogin> loginByCredentials(LoginCredentials credentials) {
+    public Single<UserLogin> login(LoginCredentials credentials) {
         return networkRepository.loginByCredentials(credentials);
     }
 
     @Override
-    public Single<Malls> fetchMalls() {
-        return networkRepository.fetchMalls(localDataManager.getUserToken());
+    public Single<Malls> loadMalls() {
+        return networkRepository.fetchMalls(localDataRepository.getUserToken());
+    }
+
+    @Override
+    public Single<Mall> loadMallDetails(int id) {
+        return networkRepository.fetchMallDetailes(id, localDataRepository.getUserToken());
     }
 }

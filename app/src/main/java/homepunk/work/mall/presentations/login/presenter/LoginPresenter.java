@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import homepunk.work.mall.data.local.repository.SharedPreferencesRepository;
-import homepunk.work.mall.data.local.interfaces.ISharedPreferencesRepository;
-import homepunk.work.mall.data.remote.repository.MallApiRepository;
-import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
-import homepunk.work.mall.presentations.App;
+import homepunk.work.mall.data.DataRepository;
+import homepunk.work.mall.data.interfaces.IDataRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
@@ -23,12 +20,10 @@ import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
-    private IMallApiRepository mallApiRepository;
-    private ISharedPreferencesRepository sharedPreferencesRepository;
+    private IDataRepository dataRepository;
 
     public LoginPresenter() {
-        this.mallApiRepository = new MallApiRepository();
-        this.sharedPreferencesRepository = new SharedPreferencesRepository(App.getContext());
+        this.dataRepository= new DataRepository();
     }
 
     @Override
@@ -68,8 +63,8 @@ public class LoginPresenter implements ILoginPresenter {
         }
 
         if (!error) {
-            mallApiRepository
-                    .loginByCredentials(new LoginCredentials(email, password))
+            dataRepository
+                    .login(new LoginCredentials(email, password))
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new SingleSubscriber<UserLogin>() {
@@ -78,8 +73,6 @@ public class LoginPresenter implements ILoginPresenter {
                             if (view != null) {
                                 view.onLoginSuccess(user);
                                 view.showProgressDialog(false);
-
-                                sharedPreferencesRepository.storeAccessToken(user.getToken());
                             }
                         }
 

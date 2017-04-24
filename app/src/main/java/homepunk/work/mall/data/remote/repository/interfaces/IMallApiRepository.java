@@ -2,6 +2,7 @@ package homepunk.work.mall.data.remote.repository.interfaces;
 
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.presentations.main.model.Mall;
 import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
 
@@ -13,4 +14,6 @@ public interface IMallApiRepository {
     Single<UserLogin> loginByCredentials(LoginCredentials credentials);
 
     Single<Malls> fetchMalls(String token);
+
+    Single<Mall> fetchMallDetailes(int id, String token);
 }

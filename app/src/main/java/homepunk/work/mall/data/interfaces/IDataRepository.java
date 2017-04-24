@@ -2,6 +2,7 @@ package homepunk.work.mall.data.interfaces;
 
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.presentations.main.model.Mall;
 import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
 
@@ -10,7 +11,9 @@ import rx.Single;
  **/
 
 public interface IDataRepository {
-    Single<UserLogin> loginByCredentials(LoginCredentials credentials);
+    Single<UserLogin> login(LoginCredentials credentials);
 
-    Single<Malls> fetchMalls();
+    Single<Malls> loadMalls();
+
+    Single<Mall> loadMallDetails(int id);
 }

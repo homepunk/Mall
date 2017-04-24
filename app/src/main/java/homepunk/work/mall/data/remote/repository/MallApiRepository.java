@@ -5,6 +5,7 @@ import homepunk.work.mall.data.remote.MallApiManager;
 import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.presentations.main.model.Mall;
 import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
 
@@ -23,5 +24,10 @@ public class MallApiRepository implements IMallApiRepository {
     @Override
     public Single<Malls> fetchMalls(String token) {
         return mallApi.fetchMalls(token);
+    }
+
+    @Override
+    public Single<Mall> fetchMallDetailes(int id, String token) {
+        return mallApi.fetchMallDetails(id, token);
     }
 }

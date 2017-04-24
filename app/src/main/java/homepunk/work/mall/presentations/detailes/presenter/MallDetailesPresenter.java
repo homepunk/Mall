@@ -4,7 +4,6 @@ import homepunk.work.mall.data.remote.repository.MallApiRepository;
 import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
 import homepunk.work.mall.presentations.detailes.presenter.interfaces.IMallDetailesPresenter;
 import homepunk.work.mall.presentations.detailes.ui.interfaces.IMallDetailesView;
-import homepunk.work.mall.presentations.login.models.UserLogin;
 
 /**
  * Created by Homepunk on 24.04.2017.
@@ -24,7 +23,7 @@ public class MallDetailesPresenter implements IMallDetailesPresenter {
     }
 
     @Override
-    public void getMallDetailes(UserLogin user, int id) {
+    public void getMallDetailes(int id) {
 
     }
 }
