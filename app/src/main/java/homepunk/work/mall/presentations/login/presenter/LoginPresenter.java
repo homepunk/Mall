@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import homepunk.work.mall.data.DataRepository;
+import homepunk.work.mall.data.LocalDataRepository;
 import homepunk.work.mall.data.interfaces.IDataRepository;
+import homepunk.work.mall.data.interfaces.ILocalDataRepository;
 import homepunk.work.mall.presentations.login.models.LoginCredentials;
 import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
@@ -21,9 +23,11 @@ import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
     private IDataRepository dataRepository;
+    private ILocalDataRepository localDataRepository;
 
     public LoginPresenter() {
         this.dataRepository= new DataRepository();
+        this.localDataRepository = new LocalDataRepository();
     }
 
     @Override
@@ -73,6 +77,8 @@ public class LoginPresenter implements ILoginPresenter {
                             if (view != null) {
                                 view.onLoginSuccess(user);
                                 view.showProgressDialog(false);
+
+                                localDataRepository.saveUserToken(user.getToken());
                             }
                         }
 

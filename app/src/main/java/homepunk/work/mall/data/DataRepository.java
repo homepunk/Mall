@@ -9,10 +9,7 @@ import homepunk.work.mall.presentations.login.models.UserLogin;
 import homepunk.work.mall.presentations.main.model.Mall;
 import homepunk.work.mall.presentations.main.model.Malls;
 import rx.Single;
-
-/**
- * Created by Homepunk on 24.04.2017.
- **/
+import timber.log.Timber;
 
 public class DataRepository implements IDataRepository {
     private IMallApiRepository networkRepository;
@@ -30,6 +27,7 @@ public class DataRepository implements IDataRepository {
 
     @Override
     public Single<Malls> loadMalls() {
+        Timber.i("User token: " + localDataRepository.getUserToken());
         return networkRepository.fetchMalls(localDataRepository.getUserToken());
     }
 

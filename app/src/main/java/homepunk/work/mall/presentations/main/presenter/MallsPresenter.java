@@ -1,20 +1,13 @@
 package homepunk.work.mall.presentations.main.presenter;
 
-import android.content.Intent;
-
-import homepunk.work.mall.data.local.repository.SharedPreferencesRepository;
-import homepunk.work.mall.data.local.interfaces.ISharedPreferencesRepository;
-import homepunk.work.mall.data.remote.repository.MallApiRepository;
-import homepunk.work.mall.data.remote.repository.interfaces.IMallApiRepository;
-import homepunk.work.mall.presentations.App;
-import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.data.DataRepository;
+import homepunk.work.mall.data.interfaces.IDataRepository;
 import homepunk.work.mall.presentations.main.model.Malls;
 import homepunk.work.mall.presentations.main.presenter.interfaces.IMallsPresenter;
 import homepunk.work.mall.presentations.main.view.interfaces.IMallsView;
 import rx.SingleSubscriber;
 import timber.log.Timber;
 
-import static homepunk.work.mall.data.Constants.MALL_KEY_ID;
 import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
 
 /**
@@ -22,12 +15,11 @@ import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
  **/
 
 public class MallsPresenter implements IMallsPresenter {
-    private IMallApiRepository mallApiRepository;
-    private ISharedPreferencesRepository sharedPreferencesRepository;
+    private IDataRepository dataRepository;
     private IMallsView view;
 
     public MallsPresenter() {
-        this.mallApiRepository = new MallApiRepository();
+        this.dataRepository = new DataRepository();
     }
 
     @Override
@@ -37,15 +29,7 @@ public class MallsPresenter implements IMallsPresenter {
 
     @Override
     public void getMalls() {
-        String token = getToken();
-        sharedPreferencesRepository = new SharedPreferencesRepository(App.getContext());
-        Timber.i("Retrieved token from shared prefs: " + sharedPreferencesRepository.retrieveAccessToken());
-
-        if (token == null) {
-            return;
-        }
-
-        mallApiRepository.fetchMalls(token)
+        dataRepository.loadMalls()
                 .compose(applyIOSchedulers())
                 .subscribe(new SingleSubscriber<Malls>() {
                     @Override
@@ -63,16 +47,5 @@ public class MallsPresenter implements IMallsPresenter {
                         }
                     }
                 });
-    }
-
-    private String getToken() {
-        if (view == null) {
-            return null;
-        }
-
-        Intent intent = view.getActivity().getIntent();
-        UserLogin user = (UserLogin) intent.getSerializableExtra(MALL_KEY_ID);
-
-        return user != null ? user.getToken() : null;
     }
 }

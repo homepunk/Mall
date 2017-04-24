@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="homepunk.work.mall.presentations.detailes.ui.MallDetailesActivity">
+    tools:context="homepunk.work.mall.presentations.details.ui.MallDetailesActivity">
 
 </android.support.constraint.ConstraintLayout>

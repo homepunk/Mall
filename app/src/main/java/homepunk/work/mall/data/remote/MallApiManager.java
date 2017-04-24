@@ -20,7 +20,7 @@ public class MallApiManager {
         client = new OkHttpClient
             .Builder()
             .retryOnConnectionFailure(false)
-//                .addInterceptor(interceptor)
+                .addInterceptor(interceptor)
             .build();
 }
 

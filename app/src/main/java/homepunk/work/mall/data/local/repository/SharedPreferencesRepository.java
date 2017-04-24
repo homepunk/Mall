@@ -4,20 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import homepunk.work.mall.data.local.interfaces.ISharedPreferencesRepository;
+import homepunk.work.mall.presentations.App;
 
 import static homepunk.work.mall.data.Constants.KEY_ACCESS_TOKEN;
 import static homepunk.work.mall.data.Constants.SHARED_PREF_DEF_VALUE;
 import static homepunk.work.mall.data.Constants.SHARED_PREF_NAME;
 
-/**
- * Created by Homepunk on 24.04.2017.
- **/
-
 public class SharedPreferencesRepository implements ISharedPreferencesRepository {
     private final SharedPreferences sharedPreferences;
 
-    public SharedPreferencesRepository(Context context) {
-        this.sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+    public SharedPreferencesRepository() {
+        this.sharedPreferences = App.getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
     }
 
     @Override

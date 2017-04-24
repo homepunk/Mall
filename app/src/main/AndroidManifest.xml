@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentations.main.view.MallsActivity" />
-        <activity android:name=".presentations.detailes.ui.MallDetailesActivity"></activity>
+        <activity android:name=".presentations.details.ui.MallDetailesActivity"></activity>
     </application>
 
 </manifest>
