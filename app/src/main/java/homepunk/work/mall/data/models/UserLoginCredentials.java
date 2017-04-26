@@ -1,14 +1,14 @@
-package homepunk.work.mall.presentations.login.models;
+package homepunk.work.mall.data.models;
 
 /**
  * Created by Homepunk on 21.04.2017.
  **/
 
-public class LoginCredentials {
+public class UserLoginCredentials {
     private String email;
     private String password;
 
-    public LoginCredentials(String email, String password) {
+    public UserLoginCredentials(String email, String password) {
         this.email = email;
         this.password = password;
     }

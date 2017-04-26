@@ -1,7 +1,8 @@
 package homepunk.work.mall.presentations.main.presenter;
 
-import homepunk.work.mall.data.remote.repository.interfaces.IRemoteRepository;
-import homepunk.work.mall.presentations.main.model.Malls;
+import homepunk.work.mall.data.managers.ModuleManager;
+import homepunk.work.mall.data.managers.interfaces.IModuleManager;
+import homepunk.work.mall.data.models.Malls;
 import homepunk.work.mall.presentations.main.presenter.interfaces.IMallsPresenter;
 import homepunk.work.mall.presentations.main.view.interfaces.IMallsView;
 import rx.SingleSubscriber;
@@ -14,11 +15,11 @@ import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
  **/
 
 public class MallsPresenter implements IMallsPresenter {
-    private IRemoteRepository dataRepository;
+    private IModuleManager moduleManager;
     private IMallsView view;
 
     public MallsPresenter() {
-        this.dataRepository = new DataRepository();
+        this.moduleManager = new ModuleManager();
     }
 
     @Override
@@ -28,7 +29,9 @@ public class MallsPresenter implements IMallsPresenter {
 
     @Override
     public void getMalls() {
-        dataRepository.loadMalls()
+        moduleManager.getRemoteManagers()
+                .getRemoteRepository()
+                .loadMalls()
                 .compose(applyIOSchedulers())
                 .subscribe(new SingleSubscriber<Malls>() {
                     @Override

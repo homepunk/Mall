@@ -1,12 +1,12 @@
-package homepunk.work.mall.data.remote.repository;
+package homepunk.work.mall.data.storages.remote.repository;
 
 import homepunk.work.mall.data.managers.ModuleManager;
-import homepunk.work.mall.data.remote.repository.interfaces.IRemoteRepository;
-import homepunk.work.mall.data.remote.service.MallApi;
-import homepunk.work.mall.presentations.login.models.LoginCredentials;
-import homepunk.work.mall.presentations.login.models.UserLogin;
-import homepunk.work.mall.presentations.main.model.Mall;
-import homepunk.work.mall.presentations.main.model.Malls;
+import homepunk.work.mall.data.storages.remote.repository.interfaces.IRemoteRepository;
+import homepunk.work.mall.data.storages.remote.service.MallApi;
+import homepunk.work.mall.data.models.UserLoginCredentials;
+import homepunk.work.mall.data.models.UserLogin;
+import homepunk.work.mall.data.models.Mall;
+import homepunk.work.mall.data.models.Malls;
 import rx.Single;
 
 /**
@@ -21,7 +21,7 @@ public class RemoteRepository implements IRemoteRepository {
     }
 
     @Override
-    public Single<UserLogin> login(LoginCredentials credentials) {
+    public Single<UserLogin> login(UserLoginCredentials credentials) {
         return mallApi.loginByCredentials(credentials);
     }
 

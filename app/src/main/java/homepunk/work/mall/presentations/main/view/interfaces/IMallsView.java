@@ -3,7 +3,7 @@ package homepunk.work.mall.presentations.main.view.interfaces;
 import java.util.List;
 
 import homepunk.work.mall.presentations.base.IBaseView;
-import homepunk.work.mall.presentations.main.model.Mall;
+import homepunk.work.mall.data.models.Mall;
 
 /**
  * Created by Homepunk on 21.04.2017.

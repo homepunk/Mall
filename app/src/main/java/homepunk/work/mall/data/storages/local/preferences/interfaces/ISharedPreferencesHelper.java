@@ -1,10 +1,10 @@
-package homepunk.work.mall.data.local.preferences.interfaces;
+package homepunk.work.mall.data.storages.local.preferences.interfaces;
 
 /**
  * Created by Homepunk on 24.04.2017.
  **/
 
-public interface ISharedPreferencesRepository {
+public interface ISharedPreferencesHelper {
     void storeAccessToken(String token);
     String retrieveAccessToken();
 }

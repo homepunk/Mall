@@ -9,7 +9,7 @@ import android.widget.Toast;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentations.details.presenter.interfaces.IMallDetailsPresenter;
 import homepunk.work.mall.presentations.details.ui.interfaces.IMallDetailesView;
-import homepunk.work.mall.presentations.main.model.Mall;
+import homepunk.work.mall.data.models.Mall;
 
 public class MallDetailsActivity extends AppCompatActivity implements IMallDetailesView {
     private IMallDetailsPresenter mallDetailsPresenter;

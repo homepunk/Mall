@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentations.main.model;
+package homepunk.work.mall.data.models;
 
 import com.google.gson.annotations.SerializedName;
 

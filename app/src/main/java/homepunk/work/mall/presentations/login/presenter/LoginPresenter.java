@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import homepunk.work.mall.data.remote.repository.interfaces.IRemoteRepository;
-import homepunk.work.mall.presentations.login.models.LoginCredentials;
-import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.data.managers.ModuleManager;
+import homepunk.work.mall.data.managers.interfaces.IModuleManager;
+import homepunk.work.mall.data.models.UserLoginCredentials;
+import homepunk.work.mall.data.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
 import homepunk.work.mall.presentations.main.view.MallsActivity;
@@ -19,12 +20,10 @@ import static homepunk.work.mall.data.Constants.USER_KEY_ID;
 
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
-    private IRemoteRepository dataRepository;
-    private ILocalDataRepository localDataRepository;
+    private IModuleManager moduleManager;
 
     public LoginPresenter() {
-        this.dataRepository= new DataRepository();
-        this.localDataRepository = new LocalDataRepository();
+        this.moduleManager = new ModuleManager();
     }
 
     @Override
@@ -64,8 +63,9 @@ public class LoginPresenter implements ILoginPresenter {
         }
 
         if (!error) {
-            dataRepository
-                    .login(new LoginCredentials(email, password))
+            moduleManager.getRemoteManagers()
+                    .getRemoteRepository()
+                    .login(new UserLoginCredentials(email, password))
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new SingleSubscriber<UserLogin>() {
@@ -75,7 +75,9 @@ public class LoginPresenter implements ILoginPresenter {
                                 view.onLoginSuccess(user);
                                 view.showProgressDialog(false);
 
-                                localDataRepository.saveUserToken(user.getToken());
+                                moduleManager.getLocalManagers()
+                                        .getSharedPreferencesHelper()
+                                        .storeAccessToken(user.getToken());
                             }
                         }
 

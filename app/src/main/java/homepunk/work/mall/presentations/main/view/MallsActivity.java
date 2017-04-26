@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentations.main.adapter.MallAdapter;
-import homepunk.work.mall.presentations.main.model.Mall;
+import homepunk.work.mall.data.models.Mall;
 import homepunk.work.mall.presentations.main.presenter.MallsPresenter;
 import homepunk.work.mall.presentations.main.presenter.interfaces.IMallsPresenter;
 import homepunk.work.mall.presentations.main.view.interfaces.IMallsView;

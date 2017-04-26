@@ -1,6 +1,6 @@
 package homepunk.work.mall.presentations.login.presenter.interfaces;
 
-import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.data.models.UserLogin;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;
 
 /**

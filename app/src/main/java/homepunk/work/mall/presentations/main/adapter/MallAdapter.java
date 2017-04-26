@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentations.main.model.Mall;
+import homepunk.work.mall.data.models.Mall;
 
 public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MallHolder> {
     private List<Mall> malls;

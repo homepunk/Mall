@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentations.login.models.UserLogin;
+import homepunk.work.mall.data.models.UserLogin;
 import homepunk.work.mall.presentations.login.presenter.LoginPresenter;
 import homepunk.work.mall.presentations.login.presenter.interfaces.ILoginPresenter;
 import homepunk.work.mall.presentations.login.view.interfaces.ILoginView;

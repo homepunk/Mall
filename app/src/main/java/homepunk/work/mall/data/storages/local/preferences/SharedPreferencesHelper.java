@@ -1,19 +1,19 @@
-package homepunk.work.mall.data.local.preferences;
+package homepunk.work.mall.data.storages.local.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import homepunk.work.mall.data.local.preferences.interfaces.ISharedPreferencesRepository;
+import homepunk.work.mall.data.storages.local.preferences.interfaces.ISharedPreferencesHelper;
 import homepunk.work.mall.presentations.App;
 
 import static homepunk.work.mall.data.Constants.KEY_ACCESS_TOKEN;
 import static homepunk.work.mall.data.Constants.SHARED_PREF_DEF_VALUE;
 import static homepunk.work.mall.data.Constants.SHARED_PREF_NAME;
 
-public class SharedPreferencesRepository implements ISharedPreferencesRepository {
+public class SharedPreferencesHelper implements ISharedPreferencesHelper {
     private final SharedPreferences sharedPreferences;
 
-    public SharedPreferencesRepository() {
+    public SharedPreferencesHelper() {
         this.sharedPreferences = App.getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
     }
 
