@@ -2,14 +2,13 @@ package homepunk.work.mall.data.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import homepunk.work.mall.data.Constants;
-
-import static homepunk.work.mall.data.Constants.MALL_KEY_DESCRIPTION;
-import static homepunk.work.mall.data.Constants.MALL_KEY_ID;
-import static homepunk.work.mall.data.Constants.MALL_KEY_IMAGE;
-import static homepunk.work.mall.data.Constants.MALL_KEY_LATITUDE;
-import static homepunk.work.mall.data.Constants.MALL_KEY_LONGTITUDE;
-import static homepunk.work.mall.data.Constants.MALL_KEY_NAME;
+import static homepunk.work.mall.data.Constants.BaseUrls.SWAGGER_IMAGE_URL;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_DESCRIPTION;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_ID;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_IMAGE;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_LATITUDE;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_LONGTITUDE;
+import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_NAME;
 
 /**
  * Created by Homepunk on 21.04.2017.
@@ -76,7 +75,7 @@ public class Mall {
 
     public String getFullImagePath() {
         return new StringBuilder()
-                .append(Constants.MALL_IMAGE_BASE_URL)
+                .append(SWAGGER_IMAGE_URL)
                 .append(image).toString();
     }
 

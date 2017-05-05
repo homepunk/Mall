@@ -4,14 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-import static homepunk.work.mall.data.Constants.USER_KEY_EMAIL;
-import static homepunk.work.mall.data.Constants.USER_KEY_FIRST_NAME;
-import static homepunk.work.mall.data.Constants.USER_KEY_ID;
-import static homepunk.work.mall.data.Constants.USER_KEY_LAST_NAME;
-import static homepunk.work.mall.data.Constants.USER_KEY_STATUS;
-import static homepunk.work.mall.data.Constants.USER_KEY_TOKEN;
-import static homepunk.work.mall.data.Constants.USER_PHOTO_LANDSCAPE_PATH;
-import static homepunk.work.mall.data.Constants.USER_PHOTO_PATH;
+import timber.log.Timber;
+
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_EMAIL;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_FIRST_NAME;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_ID;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_LAST_NAME;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_STATUS;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_TOKEN;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_PHOTO_LANDSCAPE_PATH;
+import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_PHOTO_PATH;
+
 
 /**
  * Created by Homepunk on 21.04.2017.
@@ -55,6 +58,7 @@ public class UserLogin implements Serializable{
     }
 
     public void setToken(String token) {
+        Timber.i("User token is: " + token);
         this.token = token;
     }
 
