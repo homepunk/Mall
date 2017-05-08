@@ -53,7 +53,7 @@ public class MallDetailsActivity extends AppCompatActivity implements MallDetail
     @Override
     public void onResult(MallDetails details) {
         if (details != null) {
-            shopAdapter.updateShops(details.getShopUpdate().getShops());
+            shopAdapter.updateShops(details.getShopResponse().getShops());
         }
     }
 

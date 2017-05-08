@@ -10,7 +10,7 @@ import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALLS_KEY_U
  * Created by Homepunk on 21.04.2017.
  **/
 
-public class MallUpdate {
+public class MallResponse {
     @SerializedName(MALLS_KEY_UPDATE)
     private List<Mall> malls;
 

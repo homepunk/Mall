@@ -2,13 +2,12 @@ package homepunk.work.mall.presentation.main.presenters;
 
 import android.content.Intent;
 
-import homepunk.work.mall.data.managers.DataManagerImpl;
-import homepunk.work.mall.data.managers.interfaces.DataManager;
 import homepunk.work.mall.data.models.MallDetails;
-import homepunk.work.mall.presentation.main.views.interfaces.MallDetailesView;
+import homepunk.work.mall.domain.interactors.GeMallDetailsInteractorImpl;
+import homepunk.work.mall.domain.interactors.interfaces.GetMallDetailsInteractor;
+import homepunk.work.mall.domain.listeners.MallListener;
 import homepunk.work.mall.presentation.main.presenters.interfaces.MallDetailsPresenter;
-import homepunk.work.mall.utils.RxUtils;
-import rx.SingleSubscriber;
+import homepunk.work.mall.presentation.main.views.interfaces.MallDetailesView;
 import timber.log.Timber;
 
 import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_ID;
@@ -19,10 +18,10 @@ import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_ID
 
 public class MallDetailsPresenterImpl implements MallDetailsPresenter {
     private MallDetailesView view;
-    private DataManager moduleManager;
+    private GetMallDetailsInteractor interactor;
 
     public MallDetailsPresenterImpl() {
-        this.moduleManager = new DataManagerImpl();
+        this.interactor = new GeMallDetailsInteractorImpl();
     }
 
     @Override
@@ -35,26 +34,24 @@ public class MallDetailsPresenterImpl implements MallDetailsPresenter {
         int id = getIdFromIntent();
 
         if (id != 0) {
-            moduleManager.getRemoteManagers()
-                    .getRemoteRepository()
-                    .loadMallDetails(id)
-                    .compose(RxUtils.applyIOSchedulers())
-                    .subscribe(new SingleSubscriber<MallDetails>() {
-                        @Override
-                        public void onSuccess(MallDetails mallDetails) {
-                            if (view != null) {
-                                view.onResult(mallDetails);
-                            }
-                        }
+            interactor.getMallDetails(id, new MallListener<MallDetails>() {
+                @Override
+                public void onSuccess(MallDetails mallDetails) {
+                    if (view != null) {
+                        view.onResult(mallDetails);
+                    }
 
-                        @Override
-                        public void onError(Throwable error) {
-                            if (view != null) {
-                                Timber.e(error);
-                                view.onError(error.getLocalizedMessage());
-                            }
-                        }
-                    });
+                }
+
+                @Override
+                public void onFailed(Throwable error) {
+                    if (view != null) {
+                        Timber.e(error);
+                        view.onError(error.getLocalizedMessage());
+                    }
+
+                }
+            });
         }
     }
 

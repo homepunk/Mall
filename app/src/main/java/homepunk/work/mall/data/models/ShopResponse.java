@@ -10,7 +10,7 @@ import static homepunk.work.mall.data.Constants.SerializedNames.Shops.SHOPS_UPDA
  * Created by Homepunk on 05.05.2017.
  **/
 
-public class ShopUpdate {
+public class ShopResponse {
     @SerializedName(SHOPS_UPDATE)
     private List<Shop> shops;
 

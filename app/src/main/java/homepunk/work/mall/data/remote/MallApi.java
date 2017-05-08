@@ -1,7 +1,7 @@
-package homepunk.work.mall.data.storages.remote.api;
+package homepunk.work.mall.data.remote;
 
 import homepunk.work.mall.data.models.MallDetails;
-import homepunk.work.mall.data.models.MallUpdate;
+import homepunk.work.mall.data.models.MallResponse;
 import homepunk.work.mall.data.models.UserLogin;
 import homepunk.work.mall.data.models.UserLoginCredentials;
 import retrofit2.http.Body;
@@ -19,7 +19,7 @@ public interface MallApi {
     Single<UserLogin> loginByCredentials(@Body UserLoginCredentials credentials);
 
     @POST(MALLS)
-    Single<MallUpdate> fetchMalls(@Query("token") String token);
+    Single<MallResponse> fetchMalls(@Query("token") String token);
 
     @POST(MALL_DETAILES)
     Single<MallDetails> fetchMallDetails(@Path("id") int id,

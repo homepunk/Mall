@@ -30,7 +30,7 @@ public class MallDetails {
     private String imageUrl;
 
     @SerializedName(MALL_DETAILS_SHOPS)
-    private ShopUpdate shopUpdate;
+    private ShopResponse shopResponse;
 
 //    @SerializedName(MALL_DETAILS_FLOORS)
 //    private List<Floor> floors;
@@ -75,11 +75,11 @@ public class MallDetails {
         this.imageUrl = imageUrl;
     }
 
-    public ShopUpdate getShopUpdate() {
-        return shopUpdate;
+    public ShopResponse getShopResponse() {
+        return shopResponse;
     }
 
-    public void setShopUpdate(ShopUpdate shopUpdate) {
-        this.shopUpdate = shopUpdate;
+    public void setShopResponse(ShopResponse shopResponse) {
+        this.shopResponse = shopResponse;
     }
 }
