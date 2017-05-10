@@ -1,7 +1,7 @@
 package homepunk.work.mall.data.repository.datasource.remote.interfaces;
 
-import homepunk.work.mall.data.models.MallDetails;
-import homepunk.work.mall.data.models.MallResponse;
+import homepunk.work.mall.data.entity.MallDetailsResponse;
+import homepunk.work.mall.data.entity.MallResponse;
 import rx.Single;
 
 /**
@@ -11,5 +11,5 @@ import rx.Single;
 public interface MallDataSource {
     Single<MallResponse> getMalls();
 
-    Single<MallDetails> getMallDetails(int id);
+    Single<MallDetailsResponse> getMallDetails(int id);
 }

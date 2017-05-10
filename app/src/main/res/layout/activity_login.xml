@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="homepunk.work.mall.presentations.login.view.LoginActivity">
+    tools:context="homepunk.work.mall.presentation.activity.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar

@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="homepunk.work.mall.presentations.details.ui.MallDetailsActivity"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context="homepunk.work.mall.presentation.activity.MallDetailsActivity">
 
-    <ImageView
-        android:id="@+id/mall_details_image"
+    <FrameLayout
+        android:id="@+id/mall_details_frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/mall_details_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/mall_details_description"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/mall_details_description"
+        <ImageView
+            android:id="@+id/mall_details_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_mall_image_size"
+            android:alpha="0.5"
+            android:scaleType="centerCrop" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragments_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/mall_details_frame" />
+
+</RelativeLayout>

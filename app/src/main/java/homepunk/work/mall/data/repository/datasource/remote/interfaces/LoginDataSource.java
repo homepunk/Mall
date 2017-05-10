@@ -1,7 +1,7 @@
 package homepunk.work.mall.data.repository.datasource.remote.interfaces;
 
-import homepunk.work.mall.data.models.UserLogin;
-import homepunk.work.mall.data.models.UserLoginCredentials;
+import homepunk.work.mall.presentation.model.UserLogin;
+import homepunk.work.mall.presentation.model.UserLoginCredentials;
 import rx.Single;
 
 /**

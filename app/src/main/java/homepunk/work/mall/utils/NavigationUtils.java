@@ -3,9 +3,10 @@ package homepunk.work.mall.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import homepunk.work.mall.data.models.UserLogin;
-import homepunk.work.mall.presentation.main.views.MallDetailsActivity;
-import homepunk.work.mall.presentation.main.views.MallsActivity;
+import homepunk.work.mall.presentation.activity.MallDetailsActivity;
+import homepunk.work.mall.presentation.activity.MallListActivity;
+import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.presentation.model.UserLogin;
 
 import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALL_KEY_ID;
 import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_ID;
@@ -16,16 +17,16 @@ import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_ID
 
 public class NavigationUtils {
     public static void navigateToHomeScreen(Context context, UserLogin user) {
-        Intent intent = new Intent(context, MallsActivity.class);
+        Intent intent = new Intent(context, MallListActivity.class);
 
         intent.putExtra(USER_KEY_ID, user);
         context.startActivity(intent);
     }
 
-    public static void navigateToMallDetails(Context context, int id) {
+    public static void navigateToMallDetails(Context context, Mall mall) {
         Intent intent = new Intent(context, MallDetailsActivity.class);
 
-        intent.putExtra(MALL_KEY_ID, id);
+        intent.putExtra(MALL_KEY_ID, mall);
         context.startActivity(intent);
     }
 }

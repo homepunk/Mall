@@ -2,11 +2,12 @@ package homepunk.work.mall.data.repository;
 
 import java.util.List;
 
-import homepunk.work.mall.data.models.Mall;
-import homepunk.work.mall.data.models.MallDetails;
-import homepunk.work.mall.data.models.MallResponse;
+import homepunk.work.mall.data.entity.maper.MallDetailsDataMapper;
+import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.data.entity.MallResponse;
 import homepunk.work.mall.data.repository.factory.MallDataSourceFactory;
-import homepunk.work.mall.domain.repositorys.MallRepository;
+import homepunk.work.mall.domain.repository.MallRepository;
+import homepunk.work.mall.presentation.model.MallDetails;
 import rx.Single;
 
 /**
@@ -32,6 +33,7 @@ public class MallRepositoryImpl implements MallRepository {
     public Single<MallDetails> getMallDetails(int id) {
         return dataSourceFactory
                 .createDataSource()
-                .getMallDetails(id);
+                .getMallDetails(id)
+                .map(MallDetailsDataMapper::transform);
     }
 }

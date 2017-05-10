@@ -2,10 +2,10 @@ package homepunk.work.mall.data.repository.datasource.remote;
 
 import android.text.TextUtils;
 
-import homepunk.work.mall.data.models.MallDetails;
-import homepunk.work.mall.data.models.MallResponse;
-import homepunk.work.mall.data.remote.MallApi;
-import homepunk.work.mall.data.remote.MallApiConnection;
+import homepunk.work.mall.data.entity.MallDetailsResponse;
+import homepunk.work.mall.data.entity.MallResponse;
+import homepunk.work.mall.data.api.MallApi;
+import homepunk.work.mall.data.api.MallApiConnection;
 import homepunk.work.mall.data.repository.datasource.remote.interfaces.MallDataSource;
 import rx.Single;
 
@@ -33,7 +33,7 @@ public class MallApiDataSourceImpl implements MallDataSource {
     }
 
     @Override
-    public Single<MallDetails> getMallDetails(int id) {
+    public Single<MallDetailsResponse> getMallDetails(int id) {
         return mallApi.fetchMallDetails(id, token);
     }
 }

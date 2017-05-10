@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".presentations.App"
+        android:name=".presentation.MallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentations.login.view.LoginActivity"
+            android:name=".presentation.activity.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentations.main.view.MallsActivity" />
-        <activity android:name=".presentations.details.ui.MallDetailsActivity"></activity>
+        <activity android:name=".presentation.activity.MallListActivity" />
+        <activity android:name=".presentation.activity.MallDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
-import homepunk.work.mall.presentation.App;
+import homepunk.work.mall.presentation.MallApplication;
 
 import static homepunk.work.mall.data.Constants.Preferences.KEY_ACCESS_TOKEN;
 import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_DEF_VALUE;
@@ -18,7 +18,7 @@ public class PreferencesDataSourceImpl implements PreferencesDataSource {
     private final SharedPreferences sharedPreferences;
 
     public PreferencesDataSourceImpl() {
-        sharedPreferences = App.getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);;
+        sharedPreferences = MallApplication.getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);;
     }
 
     @Override

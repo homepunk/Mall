@@ -1,14 +1,13 @@
 package homepunk.work.mall.domain.interactors;
 
-import homepunk.work.mall.data.models.UserLogin;
-import homepunk.work.mall.data.models.UserLoginCredentials;
 import homepunk.work.mall.data.repository.LoginRepositoryImpl;
 import homepunk.work.mall.domain.interactors.interfaces.LoginInteractor;
 import homepunk.work.mall.domain.listeners.LoginListener;
-import homepunk.work.mall.domain.repositorys.LoginRepository;
+import homepunk.work.mall.domain.repository.LoginRepository;
+import homepunk.work.mall.presentation.model.UserLogin;
+import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.utils.RxUtils;
 import rx.SingleSubscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Homepunk on 08.05.2017.
@@ -25,12 +24,11 @@ public class LoginInteractorImpl implements LoginInteractor {
     public void login(UserLoginCredentials loginCredentials, LoginListener listener) {
         loginRepository
                 .login(loginCredentials)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.applyIOSchedulers())
                 .subscribe(new SingleSubscriber<UserLogin>() {
                     @Override
-                    public void onSuccess(UserLogin user) {
-                        listener.onLoginSuccess(user);
+                    public void onSuccess(UserLogin value) {
+                        listener.onLoginSuccess(value);
                     }
 
                     @Override

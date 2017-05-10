@@ -1,12 +1,12 @@
 package homepunk.work.mall.data.repository;
 
-import homepunk.work.mall.data.models.UserLogin;
-import homepunk.work.mall.data.models.UserLoginCredentials;
+import homepunk.work.mall.presentation.model.UserLogin;
+import homepunk.work.mall.presentation.model.UserLoginCredentials;
 import homepunk.work.mall.data.repository.datasource.local.PreferencesDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
 import homepunk.work.mall.data.repository.datasource.remote.LoginDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.remote.interfaces.LoginDataSource;
-import homepunk.work.mall.domain.repositorys.LoginRepository;
+import homepunk.work.mall.domain.repository.LoginRepository;
 import rx.Single;
 
 /**
