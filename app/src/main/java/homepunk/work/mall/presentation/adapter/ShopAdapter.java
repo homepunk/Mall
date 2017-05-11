@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentation.model.Shop;
+import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
 import timber.log.Timber;
 
 /**
@@ -27,13 +27,13 @@ import timber.log.Timber;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
     private final Context context;
-    private List<Shop> shops;
+    private List<ShopViewModel> shops;
 
     public ShopAdapter(Context context) {
         this.context = context;
     }
 
-    public void setList(List<Shop> shops) {
+    public void setList(List<ShopViewModel> shops) {
         this.shops = shops;
     }
 
@@ -47,7 +47,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
 
     @Override
     public void onBindViewHolder(ShopHolder holder, int position) {
-        Shop shop = shops.get(position);
+        ShopViewModel shop = shops.get(position);
 
         holder.loadImage(shop.getIamgeUrl());
         holder.setName(shop.getName());
@@ -59,7 +59,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
         return shops.size();
     }
 
-    public void updateShops(List<Shop> shops) {
+    public void updateShops(List<ShopViewModel> shops) {
         this.shops.clear();
         this.shops.addAll(shops);
         notifyDataSetChanged();

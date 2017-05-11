@@ -1,7 +1,6 @@
 package homepunk.work.mall.presentation.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
@@ -11,8 +10,9 @@ import java.util.List;
 import butterknife.Bind;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.adapter.MallAdapter;
+import homepunk.work.mall.presentation.base.BaseActivity;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.presentation.listener.RecyclerClickListener;
-import homepunk.work.mall.presentation.model.Mall;
 import homepunk.work.mall.presentation.presenter.MallListPresenterImpl;
 import homepunk.work.mall.presentation.presenter.interfaces.MallListPresenter;
 import homepunk.work.mall.presentation.view.MallListView;
@@ -23,7 +23,7 @@ public class MallListActivity extends BaseActivity implements MallListView {
 
     private MallListPresenter mainMallsPresenter;
     private MallAdapter mallAdapter;
-    private List<Mall> malls;
+    private List<MallViewModel> malls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MallListActivity extends BaseActivity implements MallListView {
     }
 
     @Override
-    public void onResult(List<Mall> malls) {
+    public void onResult(List<MallViewModel> malls) {
         if (malls != null) {
             mallAdapter.updateMalls(malls);
         }
@@ -60,10 +60,7 @@ public class MallListActivity extends BaseActivity implements MallListView {
         mallAdapter.setList(malls);
 
         mallsRecycler.setAdapter(mallAdapter);
-        mallsRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mallsRecycler.addOnItemTouchListener(new RecyclerClickListener(this, (view, position) -> {
-            mainMallsPresenter.navigateToMallDetails(malls.get(position));
-        }));
+        mallsRecycler.addOnItemTouchListener(new RecyclerClickListener(this, (view, position) -> mainMallsPresenter.navigateToMallDetails(malls.get(position))));
     }
 
     private void initPresenter() {

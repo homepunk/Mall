@@ -2,9 +2,9 @@ package homepunk.work.mall.presentation.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
+import homepunk.work.mall.presentation.base.BaseFragment;
 
 /**
  * Created by Homepunk on 10.05.2017.
@@ -12,10 +12,14 @@ import android.view.ViewGroup;
 
 public class ShopListFragment extends BaseFragment {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container,
-                             Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
+    public int getLayoutResId() {
+        return 0;
     }
 }

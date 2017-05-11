@@ -1,6 +1,7 @@
 package homepunk.work.mall.presentation.presenter.interfaces;
 
-import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.presentation.base.BasePresenter;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.presentation.view.MallListView;
 
 /**
@@ -10,5 +11,5 @@ import homepunk.work.mall.presentation.view.MallListView;
 public interface MallListPresenter extends BasePresenter<MallListView> {
     void getMalls();
 
-    void navigateToMallDetails(Mall mall);
+    void navigateToMallDetails(MallViewModel mall);
 }

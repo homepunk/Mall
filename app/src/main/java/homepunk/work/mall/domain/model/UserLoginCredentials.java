@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.domain.model;
 
 /**
  * Created by Homepunk on 21.04.2017.

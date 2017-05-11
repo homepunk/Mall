@@ -1,5 +1,7 @@
 package homepunk.work.mall.data.api;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -15,7 +17,7 @@ import static homepunk.work.mall.data.Constants.BaseUrl.SWAGGER_URL;
 public class MallApiConnection {
     private static MallApi mallApiInstance;
 
-    public static MallApi getMallApiInstance() {
+    public static MallApi getInstance() {
         if (mallApiInstance == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -23,7 +25,8 @@ public class MallApiConnection {
             OkHttpClient client = new OkHttpClient
                     .Builder()
                     .retryOnConnectionFailure(false)
-                    .addInterceptor(interceptor)
+                    .addNetworkInterceptor(new StethoInterceptor())
+//                    .addInterceptor(interceptor)
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()

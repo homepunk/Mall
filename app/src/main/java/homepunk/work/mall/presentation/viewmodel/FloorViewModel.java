@@ -1,19 +1,21 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-import static homepunk.work.mall.data.Constants.SerializedNames.Floor.FLOOR_KEY_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.Floor.FLOOR_KEY_LEVEL;
-import static homepunk.work.mall.data.Constants.SerializedNames.Floor.FLOOR_KEY_MALL_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.Floor.FLOOR_KEY_TYPE;
-
 /**
  * Created by Homepunk on 05.05.2017.
  **/
 
-public class Floor implements Serializable {
+public class FloorViewModel implements Serializable {
+    private static final String FLOOR_KEY_ID = "id";
+    private static final String FLOOR_KEY_LEVEL = "level";
+    private static final String FLOOR_KEY_WIDTH = "width";
+    private static final String FLOOR_KEY_TYPE = "indoors";
+    private static final String FLOOR_KEY_HEIGHT = "height";
+    private static final String FLOOR_KEY_MALL_ID = "mall_id";
+
     @SerializedName(FLOOR_KEY_ID)
     private int id;
 

@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
 import homepunk.work.mall.presentation.MallApplication;
 
-import static homepunk.work.mall.data.Constants.Preferences.KEY_ACCESS_TOKEN;
+import static homepunk.work.mall.data.Constants.Keys.KEY_ACCESS_TOKEN;
 import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_DEF_VALUE;
 import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_NAME;
 

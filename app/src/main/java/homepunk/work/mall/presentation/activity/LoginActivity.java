@@ -11,7 +11,8 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.OnClick;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentation.model.UserLogin;
+import homepunk.work.mall.presentation.base.BaseActivity;
+import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
 import homepunk.work.mall.presentation.presenter.LoginPresenterImpl;
 import homepunk.work.mall.presentation.presenter.interfaces.LoginPresenter;
 import homepunk.work.mall.presentation.view.LoginView;
@@ -40,7 +41,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
 
     @Override
-    public void onLoginSuccess(UserLogin user) {
+    public void onLoginSuccess(UserLoginViewModel user) {
         loginPresenter.navigateToMainScreen(user);
     }
 

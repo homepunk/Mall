@@ -1,19 +1,21 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
-
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_COLOR;
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_DESCRIPTION;
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_IMAGE_URL;
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_LEVEL;
-import static homepunk.work.mall.data.Constants.SerializedNames.Shop.SHOP_KEY_NAME;
 
 /**
  * Created by Homepunk on 05.05.2017.
  **/
 
-public class Shop {
+public class ShopViewModel {
+    private static final String SHOP_KEY_ID = "id";
+    private static final String SHOP_KEY_NAME = "name";
+    private static final String SHOP_KEY_LEVEL = "level";
+    private static final String SHOP_KEY_COLOR = "color";
+    private static final String SHOP_KEY_TYPE_IDS = "type_ids";
+    private static final String SHOP_KEY_IMAGE_URL = "image_url";
+    private static final String SHOP_KEY_DESCRIPTION = "description";
+    private static final String SHOP_KEY_CATEGORY_IDS = "category_ids";
+
     @SerializedName(SHOP_KEY_ID)
     private int id;
 

@@ -1,17 +1,17 @@
-package homepunk.work.mall.data.entity;
+package homepunk.work.mall.data.entity.response;
 
 import com.google.gson.annotations.SerializedName;
-
-import static homepunk.work.mall.data.Constants.SerializedNames.MallDetails.DETAILS_KEY_FLOORS;
-import static homepunk.work.mall.data.Constants.SerializedNames.MallDetails.DETAILS_KEY_PLACEMENTS;
-import static homepunk.work.mall.data.Constants.SerializedNames.MallDetails.DETAILS_KEY_PRODUCTS;
-import static homepunk.work.mall.data.Constants.SerializedNames.MallDetails.DETAILS_KEY_SHOPS;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
 public class MallDetailsResponse {
+    private static final String DETAILS_KEY_SHOPS = "shops";
+    private static final String DETAILS_KEY_FLOORS = "floors";
+    private static final String DETAILS_KEY_PRODUCTS = "products";
+    private static final String DETAILS_KEY_PLACEMENTS = "placements";
+
     @SerializedName(DETAILS_KEY_SHOPS)
     private ShopResponse shopResponse;
 

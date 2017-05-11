@@ -3,6 +3,8 @@ package homepunk.work.mall.presentation;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
+
 import timber.log.Timber;
 
 /**
@@ -22,5 +24,7 @@ public class MallApplication extends Application {
 
         instance = this;
         Timber.plant(new Timber.DebugTree());
+
+        Stetho.initializeWithDefaults(this);
     }
 }

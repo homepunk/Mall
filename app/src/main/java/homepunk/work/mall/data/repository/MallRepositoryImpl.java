@@ -1,13 +1,15 @@
 package homepunk.work.mall.data.repository;
 
+import android.content.Context;
+
 import java.util.List;
 
-import homepunk.work.mall.data.entity.maper.MallDetailsDataMapper;
-import homepunk.work.mall.presentation.model.Mall;
-import homepunk.work.mall.data.entity.MallResponse;
+import homepunk.work.mall.data.entity.mapper.MallDetailsDataMapper;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
+import homepunk.work.mall.data.entity.response.MallResponse;
 import homepunk.work.mall.data.repository.factory.MallDataSourceFactory;
 import homepunk.work.mall.domain.repository.MallRepository;
-import homepunk.work.mall.presentation.model.MallDetails;
+import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
 import rx.Single;
 
 /**
@@ -17,12 +19,13 @@ import rx.Single;
 public class MallRepositoryImpl implements MallRepository {
     private MallDataSourceFactory dataSourceFactory;
 
-    public MallRepositoryImpl() {
-        this.dataSourceFactory = new MallDataSourceFactory();
+    public MallRepositoryImpl(Context context) {
+        this.dataSourceFactory = new MallDataSourceFactory(context);
     }
 
     @Override
-    public Single<List<Mall>> getMalls() {
+    public Single<List<MallViewModel>> getMalls() {
+
         return dataSourceFactory
                 .createDataSource()
                 .getMalls()
@@ -30,7 +33,7 @@ public class MallRepositoryImpl implements MallRepository {
     }
 
     @Override
-    public Single<MallDetails> getMallDetails(int id) {
+    public Single<MallDetailsViewModel> getMallDetails(int id) {
         return dataSourceFactory
                 .createDataSource()
                 .getMallDetails(id)

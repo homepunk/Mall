@@ -2,8 +2,8 @@ package homepunk.work.mall.domain.repository;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.model.Mall;
-import homepunk.work.mall.presentation.model.MallDetails;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
+import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
 import rx.Single;
 
 /**
@@ -11,8 +11,7 @@ import rx.Single;
  **/
 
 public interface MallRepository {
-    Single<List<Mall>> getMalls();
+    Single<List<MallViewModel>> getMalls();
 
-
-    Single<MallDetails> getMallDetails(int id);
+    Single<MallDetailsViewModel> getMallDetails(int id);
 }

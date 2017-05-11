@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.activity;
+package homepunk.work.mall.presentation.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,16 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import java.io.Serializable;
 
 import butterknife.ButterKnife;
-import homepunk.work.mall.presentation.view.BaseView;
 
-import static homepunk.work.mall.data.Constants.SerializedNames.KEY_BUNDLE;
+import static homepunk.work.mall.data.Constants.Keys.KEY_BUNDLE;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
 public class BaseActivity extends AppCompatActivity implements BaseView {
-
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);

@@ -1,8 +1,10 @@
 package homepunk.work.mall.domain.interactors;
 
+import android.content.Context;
+
 import java.util.List;
 
-import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.data.repository.MallRepositoryImpl;
 import homepunk.work.mall.domain.interactors.interfaces.GetMallListInteractor;
 import homepunk.work.mall.domain.listeners.MallListener;
@@ -18,18 +20,18 @@ import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
 public class GetMallListInteractorImpl implements GetMallListInteractor {
     MallRepository mallRepository;
 
-    public GetMallListInteractorImpl() {
-        mallRepository = new MallRepositoryImpl();
+    public GetMallListInteractorImpl(Context context) {
+        mallRepository = new MallRepositoryImpl(context);
     }
 
     @Override
-    public void getMalls(MallListener<List<Mall>> listener) {
+    public void getMalls(MallListener<List<MallViewModel>> listener) {
         mallRepository
                 .getMalls()
                 .compose(applyIOSchedulers())
-                .subscribe(new SingleSubscriber<List<Mall>>() {
+                .subscribe(new SingleSubscriber<List<MallViewModel>>() {
                     @Override
-                    public void onSuccess(List<Mall> value) {
+                    public void onSuccess(List<MallViewModel> value) {
                         listener.onSuccess(value);
                     }
 

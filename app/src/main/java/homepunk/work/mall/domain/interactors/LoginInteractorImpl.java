@@ -4,8 +4,8 @@ import homepunk.work.mall.data.repository.LoginRepositoryImpl;
 import homepunk.work.mall.domain.interactors.interfaces.LoginInteractor;
 import homepunk.work.mall.domain.listeners.LoginListener;
 import homepunk.work.mall.domain.repository.LoginRepository;
-import homepunk.work.mall.presentation.model.UserLogin;
-import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
+import homepunk.work.mall.domain.model.UserLoginCredentials;
 import homepunk.work.mall.utils.RxUtils;
 import rx.SingleSubscriber;
 
@@ -25,9 +25,9 @@ public class LoginInteractorImpl implements LoginInteractor {
         loginRepository
                 .login(loginCredentials)
                 .compose(RxUtils.applyIOSchedulers())
-                .subscribe(new SingleSubscriber<UserLogin>() {
+                .subscribe(new SingleSubscriber<UserLoginViewModel>() {
                     @Override
-                    public void onSuccess(UserLogin value) {
+                    public void onSuccess(UserLoginViewModel value) {
                         listener.onLoginSuccess(value);
                     }
 

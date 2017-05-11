@@ -1,8 +1,12 @@
 package homepunk.work.mall.data.repository.factory;
 
+import android.content.Context;
+
+import homepunk.work.mall.data.repository.datasource.local.DatabaseMallDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.local.PreferencesDataSourceImpl;
+import homepunk.work.mall.data.repository.datasource.local.interfaces.DatabaseDataSource;
 import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
-import homepunk.work.mall.data.repository.datasource.remote.MallApiDataSourceImpl;
+import homepunk.work.mall.data.repository.datasource.remote.RestMallDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.remote.interfaces.MallDataSource;
 
 /**
@@ -10,13 +14,19 @@ import homepunk.work.mall.data.repository.datasource.remote.interfaces.MallDataS
  **/
 
 public class MallDataSourceFactory {
+    private final Context context;
     private PreferencesDataSource preferencesDataSource;
+    private DatabaseDataSource databaseDataSource;
 
-    public MallDataSourceFactory() {
+    public MallDataSourceFactory(Context context) {
+        this.context = context;
         this.preferencesDataSource = new PreferencesDataSourceImpl();
     }
 
     public MallDataSource createDataSource() {
-        return new MallApiDataSourceImpl(preferencesDataSource.retrieveAccessToken());
+//        TODO: creating data source logic (sync by timestrap)
+
+        databaseDataSource = new DatabaseMallDataSourceImpl(context);
+        return new RestMallDataSourceImpl(context, preferencesDataSource.retrieveAccessToken());
     }
 }

@@ -24,6 +24,11 @@
         </activity>
         <activity android:name=".presentation.activity.MallListActivity" />
         <activity android:name=".presentation.activity.MallDetailsActivity"></activity>
+
+        <provider
+            android:name="homepunk.work.mall.data.database.MallProvider"
+            android:authorities="homepunk.work.mall" />
+
     </application>
 
 </manifest>

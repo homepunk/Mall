@@ -2,7 +2,7 @@ package homepunk.work.mall.domain.interactors.interfaces;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.domain.listeners.MallListener;
 
 /**
@@ -10,5 +10,5 @@ import homepunk.work.mall.domain.listeners.MallListener;
  **/
 
 public interface GetMallListInteractor {
-    void getMalls(MallListener<List<Mall>> listener);
+    void getMalls(MallListener<List<MallViewModel>> listener);
 }

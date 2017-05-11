@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,20 +6,19 @@ import java.io.Serializable;
 
 import timber.log.Timber;
 
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_EMAIL;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_FIRST_NAME;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_LAST_NAME;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_STATUS;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_KEY_TOKEN;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_PHOTO_LANDSCAPE_PATH;
-import static homepunk.work.mall.data.Constants.SerializedNames.User.USER_PHOTO_PATH;
-
 /**
  * Created by Homepunk on 10.05.2017.
  **/
+public class UserLoginViewModel implements Serializable{
+    public static final String USER_KEY_ID = "id";
+    private static final String USER_KEY_EMAIL = "email";
+    private static final String USER_KEY_TOKEN = "token";
+    private static final String USER_KEY_STATUS = "status";
+    private static final String USER_PHOTO_PATH = "photo_url";
+    private static final String USER_KEY_LAST_NAME = "last_name";
+    private static final String USER_KEY_FIRST_NAME = "first_name";
+    private static final String USER_PHOTO_LANDSCAPE_PATH = "photo_landscape_url";
 
-public class UserLogin implements Serializable{
     @SerializedName(USER_KEY_STATUS)
     private String status;
 

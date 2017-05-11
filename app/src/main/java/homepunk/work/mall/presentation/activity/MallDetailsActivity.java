@@ -7,8 +7,9 @@ import android.widget.Toast;
 
 import butterknife.Bind;
 import homepunk.work.mall.R;
+import homepunk.work.mall.presentation.base.BaseActivity;
 import homepunk.work.mall.presentation.fragment.FloorListFragment;
-import homepunk.work.mall.presentation.model.MallDetails;
+import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
 import homepunk.work.mall.presentation.presenter.MallDetailsPresenterImpl;
 import homepunk.work.mall.presentation.presenter.interfaces.MallDetailsPresenter;
 import homepunk.work.mall.presentation.view.MallDetailesView;
@@ -35,7 +36,7 @@ public class MallDetailsActivity extends BaseActivity implements MallDetailesVie
     }
 
     @Override
-    public void onResult(MallDetails details) {
+    public void onResult(MallDetailsViewModel details) {
         if (details != null) {
             PicassoUtils.load(getContext(), details.getMall().getFullImagePath(), mallImage);
             mallDescription.setText(details.getMall().getName());

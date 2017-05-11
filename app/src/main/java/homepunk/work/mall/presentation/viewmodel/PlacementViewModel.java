@@ -1,17 +1,19 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
-
-import static homepunk.work.mall.data.Constants.SerializedNames.Placement.PLACEMENT_KEY_COLOR;
-import static homepunk.work.mall.data.Constants.SerializedNames.Placement.PLACEMENT_KEY_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.Placement.PLACEMENT_KEY_NAME;
-import static homepunk.work.mall.data.Constants.SerializedNames.Placement.PLACEMENT_KEY_SHOP_ID;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
-public class Placement {
+public class PlacementViewModel {
+    private static final String PLACEMENT_KEY_ID = "id";
+    private static final String PLACEMENT_KEY_NAME = "name";
+    private static final String PLACEMENT_KEY_COLOR = "color";
+    private static final String PLACEMENT_KEY_SHOP_ID = "shop_id";
+    private static final String PLACEMENT_KEY_TYPE_IDS = "type_ids";
+    private static final String PLACEMENT_KEY_CATEGORY_IDS = "category_ids";
+
     @SerializedName(PLACEMENT_KEY_ID)
     private int id;
 

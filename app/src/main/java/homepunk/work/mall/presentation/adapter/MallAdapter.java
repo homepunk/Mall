@@ -18,17 +18,17 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentation.model.Mall;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MallHolder> {
-    private List<Mall> malls;
+    private List<MallViewModel> malls;
     private Context context;
 
     public MallAdapter(Context context) {
         this.context = context;
     }
 
-    public void setList(List<Mall> malls) {
+    public void setList(List<MallViewModel> malls) {
         this.malls = malls;
     }
 
@@ -42,7 +42,7 @@ public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MallHolder> {
 
     @Override
     public void onBindViewHolder(MallHolder holder, int position) {
-        Mall mall = malls.get(position);
+        MallViewModel mall = malls.get(position);
 
         holder.showProgress();
         holder.setName(mall.getName());
@@ -55,7 +55,7 @@ public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MallHolder> {
         return malls.size();
     }
 
-    public void updateMalls(List<Mall> malls) {
+    public void updateMalls(List<MallViewModel> malls) {
         this.malls.clear();
         this.malls.addAll(malls);
         notifyDataSetChanged();

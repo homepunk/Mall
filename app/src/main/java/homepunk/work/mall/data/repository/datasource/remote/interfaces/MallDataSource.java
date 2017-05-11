@@ -1,7 +1,7 @@
 package homepunk.work.mall.data.repository.datasource.remote.interfaces;
 
-import homepunk.work.mall.data.entity.MallDetailsResponse;
-import homepunk.work.mall.data.entity.MallResponse;
+import homepunk.work.mall.data.entity.response.MallDetailsResponse;
+import homepunk.work.mall.data.entity.response.MallResponse;
 import rx.Single;
 
 /**

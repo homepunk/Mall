@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import homepunk.work.mall.domain.interactors.LoginInteractorImpl;
 import homepunk.work.mall.domain.interactors.interfaces.LoginInteractor;
 import homepunk.work.mall.domain.listeners.LoginListener;
-import homepunk.work.mall.presentation.model.UserLogin;
-import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
+import homepunk.work.mall.domain.model.UserLoginCredentials;
 import homepunk.work.mall.presentation.presenter.interfaces.LoginPresenter;
 import homepunk.work.mall.presentation.view.LoginView;
 import homepunk.work.mall.utils.NavigationUtils;
@@ -26,7 +26,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void navigateToMainScreen(UserLogin user) {
+    public void navigateToMainScreen(UserLoginViewModel user) {
         NavigationUtils.navigateToHomeScreen(view.getContext(), user);
     }
 
@@ -54,7 +54,7 @@ public class LoginPresenterImpl implements LoginPresenter {
         if (!error) {
             loginInteractor.login(new UserLoginCredentials(email, password), new LoginListener() {
                 @Override
-                public void onLoginSuccess(homepunk.work.mall.presentation.model.UserLogin user) {
+                public void onLoginSuccess(UserLoginViewModel user) {
                     if (view != null) {
                         view.onLoginSuccess(user);
                         view.showProgressDialog(false);

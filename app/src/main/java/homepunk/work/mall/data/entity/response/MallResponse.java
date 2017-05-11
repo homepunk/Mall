@@ -1,26 +1,26 @@
-package homepunk.work.mall.data.entity;
+package homepunk.work.mall.data.entity.response;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.model.Mall;
-
-import static homepunk.work.mall.data.Constants.SerializedNames.Mall.MALLS_KEY_UPDATE;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 /**
  * Created by Homepunk on 21.04.2017.
  **/
 
 public class MallResponse {
-    @SerializedName(MALLS_KEY_UPDATE)
-    private List<Mall> malls;
+    private static final String MALLS_KEY_UPDATE = "update";
 
-    public List<Mall> getMalls() {
+    @SerializedName(MALLS_KEY_UPDATE)
+    private List<MallViewModel> malls;
+
+    public List<MallViewModel> getMalls() {
         return malls;
     }
 
-    public void setMalls(List<Mall> malls) {
+    public void setMalls(List<MallViewModel> malls) {
         this.malls = malls;
     }
 
@@ -28,8 +28,8 @@ public class MallResponse {
     public String toString() {
         super.toString();
         StringBuilder sb = new StringBuilder();
-        for (Mall mall : malls) {
-            sb.append(mall.getName() +  "\n ");
+        for (MallViewModel mall : malls) {
+            sb.append(mall.getName() + "\n ");
         }
 
         return sb.toString();

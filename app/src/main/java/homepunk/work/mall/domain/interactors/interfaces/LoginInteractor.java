@@ -1,6 +1,6 @@
 package homepunk.work.mall.domain.interactors.interfaces;
 
-import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.domain.model.UserLoginCredentials;
 import homepunk.work.mall.domain.listeners.LoginListener;
 
 /**

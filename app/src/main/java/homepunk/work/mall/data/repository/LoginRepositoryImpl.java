@@ -1,10 +1,10 @@
 package homepunk.work.mall.data.repository;
 
-import homepunk.work.mall.presentation.model.UserLogin;
-import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
+import homepunk.work.mall.domain.model.UserLoginCredentials;
 import homepunk.work.mall.data.repository.datasource.local.PreferencesDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
-import homepunk.work.mall.data.repository.datasource.remote.LoginDataSourceImpl;
+import homepunk.work.mall.data.repository.datasource.remote.RestLoginDataSourceImpl;
 import homepunk.work.mall.data.repository.datasource.remote.interfaces.LoginDataSource;
 import homepunk.work.mall.domain.repository.LoginRepository;
 import rx.Single;
@@ -18,12 +18,12 @@ public class LoginRepositoryImpl implements LoginRepository {
     private final PreferencesDataSource preferencesDataSource;
 
     public LoginRepositoryImpl() {
-        loginDataSource = new LoginDataSourceImpl();
+        loginDataSource = new RestLoginDataSourceImpl();
         preferencesDataSource = new PreferencesDataSourceImpl();
     }
 
     @Override
-    public Single<UserLogin> login(UserLoginCredentials loginCredentials) {
+    public Single<UserLoginViewModel> login(UserLoginCredentials loginCredentials) {
         return loginDataSource
                 .login(loginCredentials)
                 .doOnSuccess(userLogin -> preferencesDataSource.storeAccessToken(userLogin.getToken()));

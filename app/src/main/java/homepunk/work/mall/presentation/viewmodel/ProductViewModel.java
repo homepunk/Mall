@@ -1,17 +1,20 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
 
-import static homepunk.work.mall.data.Constants.SerializedNames.Product.PRODUCT_KEY_DESCRIPTION;
-import static homepunk.work.mall.data.Constants.SerializedNames.Product.PRODUCT_KEY_ID;
-import static homepunk.work.mall.data.Constants.SerializedNames.Product.PRODUCT_KEY_IMAGE_URL;
-import static homepunk.work.mall.data.Constants.SerializedNames.Product.PRODUCT_KEY_NAME;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
-public class Product {
+public class ProductViewModel {
+    private static final String PRODUCT_KEY_ID = "id";
+    private static final String PRODUCT_KEY_NAME = "name";
+    private static final String PRODUCT_KEY_TYPE_IDS = "type_ids";
+    private static final String PRODUCT_KEY_IMAGE_URL = "image_url";
+    private static final String PRODUCT_KEY_CATEGORY_IDS = "category_ids";
+    private static final String PRODUCT_KEY_DESCRIPTION = "description";
+
     @SerializedName(PRODUCT_KEY_ID)
     private int id;
 

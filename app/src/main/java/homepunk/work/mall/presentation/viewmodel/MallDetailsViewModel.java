@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.model;
+package homepunk.work.mall.presentation.viewmodel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,57 +7,57 @@ import java.util.List;
  * Created by Homepunk on 10.05.2017.
  **/
 
-public class MallDetails implements Serializable {
-    private Mall mall;
-    private List<Shop> shops;
-    private List<Placement> placements;
-    private List<Product> products;
-    private List<Floor> floors;
+public class MallDetailsViewModel implements Serializable {
+    private MallViewModel mall;
+    private List<ShopViewModel> shops;
+    private List<PlacementViewModel> placements;
+    private List<ProductViewModel> products;
+    private List<FloorViewModel> floors;
 
-    public Mall getMall() {
+    public MallViewModel getMall() {
         return mall;
     }
 
-    public void setMall(Mall mall) {
+    public void setMall(MallViewModel mall) {
         this.mall = mall;
     }
 
-    public List<Shop> getShops() {
+    public List<ShopViewModel> getShops() {
         return shops;
     }
 
-    public void setShops(List<Shop> shops) {
+    public void setShops(List<ShopViewModel> shops) {
         this.shops = shops;
     }
 
-    public List<Placement> getPlacements() {
+    public List<PlacementViewModel> getPlacements() {
         return placements;
     }
 
-    public void setPlacements(List<Placement> placements) {
+    public void setPlacements(List<PlacementViewModel> placements) {
         this.placements = placements;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductViewModel> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductViewModel> products) {
         this.products = products;
     }
 
-    public List<Floor> getFloors() {
+    public List<FloorViewModel> getFloors() {
         return floors;
     }
 
-    public void setFloors(List<Floor> floors) {
+    public void setFloors(List<FloorViewModel> floors) {
         this.floors = floors;
     }
 
     @Override
     public String toString() {
         return new StringBuilder()
-                .append("Mall: ")
+                .append("MallViewModel: ")
                 .append(mall.toString())
                 .append("Floors: ")
                 .append(getFloors().size())

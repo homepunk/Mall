@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.view;
+package homepunk.work.mall.presentation.base;
 
 import android.app.Activity;
 import android.content.Context;

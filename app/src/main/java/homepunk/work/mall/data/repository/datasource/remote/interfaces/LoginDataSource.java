@@ -1,7 +1,7 @@
 package homepunk.work.mall.data.repository.datasource.remote.interfaces;
 
-import homepunk.work.mall.presentation.model.UserLogin;
-import homepunk.work.mall.presentation.model.UserLoginCredentials;
+import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
+import homepunk.work.mall.domain.model.UserLoginCredentials;
 import rx.Single;
 
 /**
@@ -9,5 +9,5 @@ import rx.Single;
  **/
 
 public interface LoginDataSource {
-    Single<UserLogin> login(UserLoginCredentials loginCredentials);
+    Single<UserLoginViewModel> login(UserLoginCredentials loginCredentials);
 }

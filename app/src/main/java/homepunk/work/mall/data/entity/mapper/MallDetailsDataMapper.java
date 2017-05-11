@@ -1,15 +1,15 @@
-package homepunk.work.mall.data.entity.maper;
+package homepunk.work.mall.data.entity.mapper;
 
-import homepunk.work.mall.data.entity.MallDetailsResponse;
-import homepunk.work.mall.presentation.model.MallDetails;
+import homepunk.work.mall.data.entity.response.MallDetailsResponse;
+import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
 public class MallDetailsDataMapper {
-    public static MallDetails transform(MallDetailsResponse mallDetailsResponse) {
-        MallDetails mallDetails = new MallDetails();
+    public static MallDetailsViewModel transform(MallDetailsResponse mallDetailsResponse) {
+        MallDetailsViewModel mallDetails = new MallDetailsViewModel();
 
         mallDetails.setFloors(mallDetailsResponse.getFloorResponse().getFloors());
         mallDetails.setPlacements(mallDetailsResponse.getPlacementsResponse().getPlacements());

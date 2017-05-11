@@ -11,7 +11,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import homepunk.work.mall.R;
-import homepunk.work.mall.presentation.model.Floor;
+import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 
 /**
  * Created by Homepunk on 10.05.2017.
@@ -19,7 +19,7 @@ import homepunk.work.mall.presentation.model.Floor;
 
 public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.FloorHolder> {
     private final Context context;
-    private List<Floor> floors;
+    private List<FloorViewModel> floors;
 
     public FloorAdapter(Context context) {
         this.context = context;
@@ -35,7 +35,7 @@ public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.FloorHolder>
 
     @Override
     public void onBindViewHolder(FloorHolder holder, int position) {
-        Floor floor = floors.get(position);
+        FloorViewModel floor = floors.get(position);
 
         holder.setLevel(floor.getLevel());
     }
@@ -45,13 +45,13 @@ public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.FloorHolder>
         return floors.size();
     }
 
-    public void update(List<Floor> floors) {
+    public void update(List<FloorViewModel> floors) {
         this.floors.clear();
         this.floors.addAll(floors);
         notifyDataSetChanged();
     }
 
-    public void setList(List<Floor> floors) {
+    public void setList(List<FloorViewModel> floors) {
         this.floors = floors;
     }
 
