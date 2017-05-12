@@ -1,14 +1,16 @@
 package homepunk.work.mall.presentation.presenter;
 
+import android.content.Intent;
 import android.text.TextUtils;
 
 import homepunk.work.mall.domain.interactors.LoginInteractorImpl;
 import homepunk.work.mall.domain.interactors.interfaces.LoginInteractor;
 import homepunk.work.mall.domain.listeners.LoginListener;
-import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
-import homepunk.work.mall.domain.model.UserLoginCredentials;
+import homepunk.work.mall.domain.model.UserCredentials;
 import homepunk.work.mall.presentation.presenter.interfaces.LoginPresenter;
+import homepunk.work.mall.presentation.service.MallSyncService;
 import homepunk.work.mall.presentation.view.LoginView;
+import homepunk.work.mall.presentation.viewmodel.UserViewModel;
 import homepunk.work.mall.utils.NavigationUtils;
 
 
@@ -26,7 +28,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void navigateToMainScreen(UserLoginViewModel user) {
+    public void navigateToMainScreen(UserViewModel user) {
         NavigationUtils.navigateToHomeScreen(view.getContext(), user);
     }
 
@@ -52,12 +54,14 @@ public class LoginPresenterImpl implements LoginPresenter {
         }
 
         if (!error) {
-            loginInteractor.login(new UserLoginCredentials(email, password), new LoginListener() {
+            loginInteractor.login(new UserCredentials(email, password), new LoginListener() {
                 @Override
-                public void onLoginSuccess(UserLoginViewModel user) {
+                public void onLoginSuccess(UserViewModel user) {
                     if (view != null) {
                         view.onLoginSuccess(user);
                         view.showProgressDialog(false);
+
+                        startSyncService();
                     }
                 }
 
@@ -69,6 +73,14 @@ public class LoginPresenterImpl implements LoginPresenter {
                     }
                 }
             });
+        }
+    }
+
+    private void startSyncService() {
+        if (view != null) {
+            Intent intent = new Intent(view.getContext(), MallSyncService.class);
+
+            view.getContext().startService(intent);
         }
     }
 }

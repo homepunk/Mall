@@ -1,4 +1,4 @@
-package homepunk.work.mall.data.repository.datasource.local.interfaces;
+package homepunk.work.mall.data.repository.datasource.interfaces;
 
 /**
  * Created by Homepunk on 08.05.2017.

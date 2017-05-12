@@ -2,8 +2,8 @@ package homepunk.work.mall.data.api;
 
 import homepunk.work.mall.data.entity.response.MallDetailsResponse;
 import homepunk.work.mall.data.entity.response.MallResponse;
-import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
-import homepunk.work.mall.domain.model.UserLoginCredentials;
+import homepunk.work.mall.presentation.viewmodel.UserViewModel;
+import homepunk.work.mall.domain.model.UserCredentials;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -16,12 +16,12 @@ import static homepunk.work.mall.data.Constants.Endpoint.MALL_DETAILES;
 
 public interface MallApi {
     @POST(LOGIN)
-    Single<UserLoginViewModel> loginByCredentials(@Body UserLoginCredentials credentials);
+    Single<UserViewModel> loginByCredentials(@Body UserCredentials credentials);
 
     @POST(MALLS)
     Single<MallResponse> fetchMalls(@Query("token") String token);
 
     @POST(MALL_DETAILES)
-    Single<MallDetailsResponse> fetchMallDetails(@Path("id") int id,
-                                                 @Query("token") String token);
+    Single<MallDetailsResponse> fetchFullMallInfromation(@Path("id") int id,
+                                                         @Query("token") String token);
 }

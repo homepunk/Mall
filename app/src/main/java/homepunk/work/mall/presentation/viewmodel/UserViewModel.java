@@ -9,7 +9,7 @@ import timber.log.Timber;
 /**
  * Created by Homepunk on 10.05.2017.
  **/
-public class UserLoginViewModel implements Serializable{
+public class UserViewModel implements Serializable {
     public static final String USER_KEY_ID = "id";
     private static final String USER_KEY_EMAIL = "email";
     private static final String USER_KEY_TOKEN = "token";

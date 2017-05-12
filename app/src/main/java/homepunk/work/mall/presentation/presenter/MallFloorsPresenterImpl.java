@@ -2,14 +2,15 @@ package homepunk.work.mall.presentation.presenter;
 
 import android.content.Intent;
 
-import homepunk.work.mall.domain.interactors.GetMallDetailsInteractorImpl;
-import homepunk.work.mall.domain.interactors.interfaces.GetMallDetailsInteractor;
+import java.util.List;
+
+import homepunk.work.mall.domain.interactors.GetFloorListInteractorImpl;
+import homepunk.work.mall.domain.interactors.interfaces.GetFloorListInteractor;
 import homepunk.work.mall.domain.listeners.MallListener;
-import homepunk.work.mall.presentation.presenter.interfaces.MallDetailsPresenter;
-import homepunk.work.mall.presentation.view.MallDetailesView;
-import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
+import homepunk.work.mall.presentation.presenter.interfaces.MallFloorsPresenter;
+import homepunk.work.mall.presentation.view.MallFloorsView;
+import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import timber.log.Timber;
 
 import static homepunk.work.mall.presentation.viewmodel.MallViewModel.MALL_KEY_ID;
 
@@ -18,41 +19,37 @@ import static homepunk.work.mall.presentation.viewmodel.MallViewModel.MALL_KEY_I
  * Created by Homepunk on 24.04.2017.
  **/
 
-public class MallDetailsPresenterImpl implements MallDetailsPresenter {
-    private MallDetailesView view;
-    private GetMallDetailsInteractor interactor;
+public class MallFloorsPresenterImpl implements MallFloorsPresenter {
+    private MallFloorsView view;
+    private GetFloorListInteractor interactor;
 
-    public MallDetailsPresenterImpl() {
+    public MallFloorsPresenterImpl() {
     }
 
     @Override
-    public void init(MallDetailesView view) {
+    public void init(MallFloorsView view) {
         this.view = view;
-        this.interactor = new GetMallDetailsInteractorImpl(view.getContext());
+        this.interactor = new GetFloorListInteractorImpl(view.getContext());
     }
 
     @Override
-    public void getMallDetails() {
+    public void getFloors() {
         MallViewModel mall= getMallFromIntent();
 
         if (mall != null) {
-            interactor.getMallDetails(mall, new MallListener<MallDetailsViewModel>() {
+            interactor.getFloorList(mall, new MallListener<List<FloorViewModel>>() {
                 @Override
-                public void onSuccess(MallDetailsViewModel mallDetails) {
+                public void onSuccess(List<FloorViewModel> floorViewModels) {
                     if (view != null) {
-                        Timber.i(mallDetails.toString());
-                        view.onResult(mallDetails);
+                        view.onResult(floorViewModels);
                     }
-
                 }
 
                 @Override
                 public void onFailed(Throwable error) {
                     if (view != null) {
-                        Timber.e(error);
                         view.onError(error.getLocalizedMessage());
                     }
-
                 }
             });
         }

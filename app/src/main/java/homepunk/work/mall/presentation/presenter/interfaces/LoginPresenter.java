@@ -1,7 +1,7 @@
 package homepunk.work.mall.presentation.presenter.interfaces;
 
 import homepunk.work.mall.presentation.base.BasePresenter;
-import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
+import homepunk.work.mall.presentation.viewmodel.UserViewModel;
 import homepunk.work.mall.presentation.view.LoginView;
 
 /**
@@ -11,5 +11,5 @@ import homepunk.work.mall.presentation.view.LoginView;
 public interface LoginPresenter extends BasePresenter<LoginView> {
     void login(String email, String password);
 
-    void navigateToMainScreen(UserLoginViewModel user);
+    void navigateToMainScreen(UserViewModel user);
 }

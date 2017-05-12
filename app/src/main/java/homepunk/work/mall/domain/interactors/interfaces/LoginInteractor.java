@@ -1,6 +1,6 @@
 package homepunk.work.mall.domain.interactors.interfaces;
 
-import homepunk.work.mall.domain.model.UserLoginCredentials;
+import homepunk.work.mall.domain.model.UserCredentials;
 import homepunk.work.mall.domain.listeners.LoginListener;
 
 /**
@@ -8,5 +8,5 @@ import homepunk.work.mall.domain.listeners.LoginListener;
  **/
 
 public interface LoginInteractor {
-    void login(UserLoginCredentials loginCredentials, LoginListener listener);
+    void login(UserCredentials loginCredentials, LoginListener listener);
 }

@@ -1,9 +1,9 @@
-package homepunk.work.mall.data.repository.datasource.local;
+package homepunk.work.mall.data.repository.datasource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import homepunk.work.mall.data.repository.datasource.local.interfaces.PreferencesDataSource;
+import homepunk.work.mall.data.repository.datasource.interfaces.PreferencesDataSource;
 import homepunk.work.mall.presentation.MallApplication;
 
 import static homepunk.work.mall.data.Constants.Keys.KEY_ACCESS_TOKEN;

@@ -4,11 +4,11 @@ package homepunk.work.mall.domain.model;
  * Created by Homepunk on 21.04.2017.
  **/
 
-public class UserLoginCredentials {
+public class UserCredentials {
     private String email;
     private String password;
 
-    public UserLoginCredentials(String email, String password) {
+    public UserCredentials(String email, String password) {
         this.email = email;
         this.password = password;
     }

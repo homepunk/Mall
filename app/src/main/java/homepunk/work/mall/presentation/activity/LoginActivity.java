@@ -12,10 +12,10 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.base.BaseActivity;
-import homepunk.work.mall.presentation.viewmodel.UserLoginViewModel;
 import homepunk.work.mall.presentation.presenter.LoginPresenterImpl;
 import homepunk.work.mall.presentation.presenter.interfaces.LoginPresenter;
 import homepunk.work.mall.presentation.view.LoginView;
+import homepunk.work.mall.presentation.viewmodel.UserViewModel;
 
 public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.login_form)
@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
 
     @Override
-    public void onLoginSuccess(UserLoginViewModel user) {
+    public void onLoginSuccess(UserViewModel user) {
         loginPresenter.navigateToMainScreen(user);
     }
 

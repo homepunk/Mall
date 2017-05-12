@@ -4,12 +4,15 @@ import android.content.Context;
 
 import java.util.List;
 
-import homepunk.work.mall.data.entity.mapper.MallDetailsDataMapper;
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import homepunk.work.mall.data.entity.response.MallResponse;
-import homepunk.work.mall.data.repository.factory.MallDataSourceFactory;
+import homepunk.work.mall.data.entity.mapper.MallMapper;
+import homepunk.work.mall.data.repository.datasource.interfaces.MallDataSource;
+import homepunk.work.mall.data.repository.manager.DataSourceManager;
 import homepunk.work.mall.domain.repository.MallRepository;
-import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
+import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
+import homepunk.work.mall.presentation.viewmodel.PlacementViewModel;
+import homepunk.work.mall.presentation.viewmodel.ProductViewModel;
+import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
 import rx.Single;
 
 /**
@@ -17,26 +20,37 @@ import rx.Single;
  **/
 
 public class MallRepositoryImpl implements MallRepository {
-    private MallDataSourceFactory dataSourceFactory;
+    private MallDataSource dataSource;
 
     public MallRepositoryImpl(Context context) {
-        this.dataSourceFactory = new MallDataSourceFactory(context);
+        this.dataSource = new DataSourceManager(context).getDatabaseDataSource();
     }
 
     @Override
     public Single<List<MallViewModel>> getMalls() {
-
-        return dataSourceFactory
-                .createDataSource()
+        return dataSource
                 .getMalls()
-                .map(MallResponse::getMalls);
+                .map(MallMapper::transform);
     }
 
     @Override
-    public Single<MallDetailsViewModel> getMallDetails(int id) {
-        return dataSourceFactory
-                .createDataSource()
-                .getMallDetails(id)
-                .map(MallDetailsDataMapper::transform);
+    public Single<List<FloorViewModel>> getFloorsByMallId(int id) {
+        return null;
     }
+
+    @Override
+    public Single<List<ShopViewModel>> getShopsByMallId(int id) {
+        return null;
+    }
+
+    @Override
+    public Single<List<PlacementViewModel>> getPlacementsByMallId(int id) {
+        return null;
+    }
+
+    @Override
+    public Single<List<ProductViewModel>> getProductsByMallId(int id) {
+        return null;
+    }
+
 }

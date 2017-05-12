@@ -3,6 +3,8 @@ package homepunk.work.mall.data.entity;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.google.gson.annotations.SerializedName;
+
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 import static android.provider.BaseColumns._ID;
@@ -17,12 +19,30 @@ import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_NAM
  **/
 
 public class Mall {
+    public static final String MALL_KEY_ID = "id";
+    private static final String MALL_KEY_NAME = "name";
+    private static final String MALL_KEY_IMAGE = "image";
+    private static final String MALL_KEY_LATITUDE = "lat";
+    private static final String MALL_KEY_LONGTITUDE = "lng";
+    private static final String MALL_KEY_DESCRIPTION = "description";
+
+    @SerializedName(MALL_KEY_ID)
     public int id;
+
+    @SerializedName(MALL_KEY_NAME)
     public String name;
-    public String image;
+
+    @SerializedName(MALL_KEY_DESCRIPTION)
     public String description;
+
+    @SerializedName(MALL_KEY_LATITUDE)
     public double latitude;
+
+    @SerializedName(MALL_KEY_LONGTITUDE)
     public double longtitude;
+
+    @SerializedName(MALL_KEY_IMAGE)
+    public String image;
 
     public Mall(MallViewModel mallViewModel) {
         id = mallViewModel.getId();

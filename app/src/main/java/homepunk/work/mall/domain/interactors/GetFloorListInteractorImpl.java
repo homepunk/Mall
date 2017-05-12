@@ -2,12 +2,14 @@ package homepunk.work.mall.domain.interactors;
 
 import android.content.Context;
 
+import java.util.List;
+
 import homepunk.work.mall.data.repository.MallRepositoryImpl;
-import homepunk.work.mall.domain.interactors.interfaces.GetMallDetailsInteractor;
+import homepunk.work.mall.domain.interactors.interfaces.GetFloorListInteractor;
 import homepunk.work.mall.domain.listeners.MallListener;
 import homepunk.work.mall.domain.repository.MallRepository;
+import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
 import rx.SingleSubscriber;
 
 import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
@@ -16,26 +18,22 @@ import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
  * Created by Homepunk on 08.05.2017.
  **/
 
-public class GetMallDetailsInteractorImpl implements GetMallDetailsInteractor {
+public class GetFloorListInteractorImpl implements GetFloorListInteractor {
     private MallRepository mallRepository;
 
-    public GetMallDetailsInteractorImpl(Context context) {
+    public GetFloorListInteractorImpl(Context context) {
         this.mallRepository = new MallRepositoryImpl(context);
     }
 
     @Override
-    public void getMallDetails(MallViewModel mall, MallListener<MallDetailsViewModel> listener) {
+    public void getFloorList(MallViewModel mall, MallListener<List<FloorViewModel>> listener) {
         mallRepository
-                .getMallDetails(mall.getId())
-                .map(mallDetails -> {
-                    mallDetails.setMall(mall);
-                    return mallDetails;
-                })
+                .getFloorsByMallId(mall.getId())
                 .compose(applyIOSchedulers())
-                .subscribe(new SingleSubscriber<MallDetailsViewModel>() {
+                .subscribe(new SingleSubscriber<List<FloorViewModel>>() {
                     @Override
-                    public void onSuccess(MallDetailsViewModel value) {
-                        listener.onSuccess(value);
+                    public void onSuccess(List<FloorViewModel> floorList) {
+                        listener.onSuccess(floorList);
                     }
 
                     @Override

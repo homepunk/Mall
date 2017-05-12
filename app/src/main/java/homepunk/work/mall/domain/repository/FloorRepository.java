@@ -9,5 +9,5 @@ import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
  **/
 
 public interface FloorRepository {
-    List<FloorViewModel> getFloorByMallId(int id);
+    List<FloorViewModel> getFloorListByMallId(int id);
 }

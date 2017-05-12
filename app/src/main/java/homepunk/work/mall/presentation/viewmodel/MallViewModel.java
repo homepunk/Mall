@@ -37,6 +37,15 @@ public class MallViewModel implements Serializable {
     @SerializedName(MALL_KEY_IMAGE)
     public String image;
 
+    public MallViewModel(int id, String name, String description, double latitude, double longtitude, String image) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
+        this.image = image;
+    }
+
     public int getId() {
         return id;
     }

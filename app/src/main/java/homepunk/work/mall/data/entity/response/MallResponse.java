@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
+import homepunk.work.mall.data.entity.Mall;
 
 /**
  * Created by Homepunk on 21.04.2017.
@@ -12,15 +12,27 @@ import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 public class MallResponse {
     private static final String MALLS_KEY_UPDATE = "update";
+    private static final String MALLS_KEY_TIMESTAMP = "timestamp";
+
+    @SerializedName(MALLS_KEY_TIMESTAMP)
+    private long timestamp;
 
     @SerializedName(MALLS_KEY_UPDATE)
-    private List<MallViewModel> malls;
+    private List<Mall> malls;
 
-    public List<MallViewModel> getMalls() {
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public List<Mall> getMalls() {
         return malls;
     }
 
-    public void setMalls(List<MallViewModel> malls) {
+    public void setMalls(List<Mall> malls) {
         this.malls = malls;
     }
 
@@ -28,7 +40,7 @@ public class MallResponse {
     public String toString() {
         super.toString();
         StringBuilder sb = new StringBuilder();
-        for (MallViewModel mall : malls) {
+        for (Mall mall : malls) {
             sb.append(mall.getName() + "\n ");
         }
 

@@ -2,8 +2,11 @@ package homepunk.work.mall.domain.repository;
 
 import java.util.List;
 
+import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import homepunk.work.mall.presentation.viewmodel.MallDetailsViewModel;
+import homepunk.work.mall.presentation.viewmodel.PlacementViewModel;
+import homepunk.work.mall.presentation.viewmodel.ProductViewModel;
+import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
 import rx.Single;
 
 /**
@@ -13,5 +16,11 @@ import rx.Single;
 public interface MallRepository {
     Single<List<MallViewModel>> getMalls();
 
-    Single<MallDetailsViewModel> getMallDetails(int id);
+    Single<List<FloorViewModel>> getFloorsByMallId(int id);
+
+    Single<List<ShopViewModel>> getShopsByMallId(int id);
+
+    Single<List<PlacementViewModel>> getPlacementsByMallId(int id);
+
+    Single<List<ProductViewModel>> getProductsByMallId(int id);
 }
