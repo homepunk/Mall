@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
+import homepunk.work.mall.data.entity.Shop;
 
 /**
  * Created by Homepunk on 05.05.2017.
@@ -14,13 +14,13 @@ public class ShopResponse {
     private static final String SHOPS_KEY_UPDATE = "update";
 
     @SerializedName(SHOPS_KEY_UPDATE)
-    private List<ShopViewModel> shops;
+    private List<Shop> shops;
 
-    public List<ShopViewModel> getShops() {
+    public List<Shop> getShops() {
         return shops;
     }
 
-    public void setShops(List<ShopViewModel> shops) {
+    public void setShops(List<Shop> shops) {
         this.shops = shops;
     }
 
@@ -28,7 +28,7 @@ public class ShopResponse {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        for (ShopViewModel shop : shops) {
+        for (Shop shop : shops) {
             builder.append(shop.toString())
                    .append("\n");
         }

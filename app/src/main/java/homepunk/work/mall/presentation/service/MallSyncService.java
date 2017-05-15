@@ -6,7 +6,6 @@ import android.os.IBinder;
 
 import homepunk.work.mall.domain.interactors.SyncUpdatesInteractorImpl;
 import homepunk.work.mall.domain.interactors.interfaces.SyncUpdatesInteractor;
-import homepunk.work.mall.domain.listeners.SyncListener;
 import timber.log.Timber;
 
 public class MallSyncService extends Service {
@@ -27,18 +26,7 @@ public class MallSyncService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        syncUpdatesInteractor.syncMallUpdates(new SyncListener() {
-            @Override
-            public void onSyncSuccess() {
-                Timber.i("Sync successfully");
-                stopSelf();
-            }
-
-            @Override
-            public void onSyncFailed() {
-                stopSelf();
-            }
-        });
+        syncUpdatesInteractor.syncAll();
 
         return Service.START_STICKY;
 

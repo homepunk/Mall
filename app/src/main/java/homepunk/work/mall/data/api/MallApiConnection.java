@@ -26,7 +26,7 @@ public class MallApiConnection {
                     .Builder()
                     .retryOnConnectionFailure(false)
                     .addNetworkInterceptor(new StethoInterceptor())
-                    .addInterceptor(interceptor)
+//                    .addInterceptor(interceptor)
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()

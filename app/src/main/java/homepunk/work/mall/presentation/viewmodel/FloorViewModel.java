@@ -1,7 +1,5 @@
 package homepunk.work.mall.presentation.viewmodel;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
@@ -9,24 +7,10 @@ import java.io.Serializable;
  **/
 
 public class FloorViewModel implements Serializable {
-    private static final String FLOOR_KEY_ID = "id";
-    private static final String FLOOR_KEY_LEVEL = "level";
-    private static final String FLOOR_KEY_WIDTH = "width";
-    private static final String FLOOR_KEY_TYPE = "indoors";
-    private static final String FLOOR_KEY_HEIGHT = "height";
-    private static final String FLOOR_KEY_MALL_ID = "mall_id";
-
-    @SerializedName(FLOOR_KEY_ID)
     private int id;
-
-    @SerializedName(FLOOR_KEY_TYPE)
-    private String type;
-
-    @SerializedName(FLOOR_KEY_LEVEL)
-    private String level;
-
-    @SerializedName(FLOOR_KEY_MALL_ID)
     private int mallId;
+    private String type;
+    private String level;
 
     public int getId() {
         return id;
@@ -59,5 +43,4 @@ public class FloorViewModel implements Serializable {
     public void setMallId(int mallId) {
         this.mallId = mallId;
     }
-
 }

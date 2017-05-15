@@ -21,8 +21,8 @@ public interface Constants {
 
     interface Endpoint {
         String LOGIN = "auth/login";
-        String MALLS = "malls/syncAll";
-        String MALL_DETAILES = "malls/{id}/syncAll";
+        String MALLS = "malls/sync";
+        String MALL_DETAILES = "malls/{id}/sync";
     }
 
     interface Preferences {

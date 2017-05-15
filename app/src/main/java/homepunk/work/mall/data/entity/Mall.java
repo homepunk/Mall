@@ -1,30 +1,43 @@
 package homepunk.work.mall.data.entity;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
 
+import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
-import static android.provider.BaseColumns._ID;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_DESCRIPTION;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_IMAGE;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_LATITUDE;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_LONGTITUDE;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.COLUMN_NAME;
+import static homepunk.work.mall.data.database.MallContract.CONTENT_AUTHORITY;
+import static homepunk.work.mall.data.database.MallContract.MallEntry.PATH_MALLS;
+import static homepunk.work.mall.data.database.MallContract.SCHEME;
 
 /**
  * Created by Homepunk on 11.05.2017.
  **/
 
-public class Mall {
+public class Mall implements DatabaseEntity {
+    public static final String[] PROJECTION_MALL = {
+            COLUMN_ID,
+            COLUMN_NAME,
+            COLUMN_DESCRIPTION,
+            COLUMN_IMAGE,
+            COLUMN_LATITUDE,
+            COLUMN_LONGTITUDE};
+
+    public static final Uri CONTENT_URI_MALL = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_MALLS);
+    public static final String CONTENT_TYPE_MALL = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
+    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
+
     public static final String MALL_KEY_ID = "id";
     private static final String MALL_KEY_NAME = "name";
     private static final String MALL_KEY_IMAGE = "image";
     private static final String MALL_KEY_LATITUDE = "lat";
     private static final String MALL_KEY_LONGTITUDE = "lng";
     private static final String MALL_KEY_DESCRIPTION = "description";
+
 
     @SerializedName(MALL_KEY_ID)
     public int id;
@@ -74,7 +87,7 @@ public class Mall {
     public ContentValues getContentValues() {
         final ContentValues values = new ContentValues();
 
-        values.put(_ID, id);
+        values.put(COLUMN_ID, id);
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_DESCRIPTION, description);
         values.put(COLUMN_IMAGE, image);

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.viewmodel.PlacementViewModel;
+import homepunk.work.mall.data.entity.Placement;
 
 
 /**
@@ -15,13 +15,13 @@ public class PlacementsResponse {
     private static final String PLACEMENT_KEY_UPDATE = "update";
 
     @SerializedName(PLACEMENT_KEY_UPDATE)
-    List<PlacementViewModel> placements;
+    List<Placement> placements;
 
-    public List<PlacementViewModel> getPlacements() {
+    public List<Placement> getPlacements() {
         return placements;
     }
 
-    public void setPlacements(List<PlacementViewModel> placements) {
+    public void setPlacements(List<Placement> placements) {
         this.placements = placements;
     }
 }

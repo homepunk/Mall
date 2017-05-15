@@ -23,6 +23,7 @@ public class PreferencesDataSourceImpl implements PreferencesDataSource {
 
     @Override
     public void storeAccessToken(String token) {
+        sharedPreferences.edit().clear().apply();
         sharedPreferences.edit().putString(KEY_ACCESS_TOKEN, token).apply();
     }
 

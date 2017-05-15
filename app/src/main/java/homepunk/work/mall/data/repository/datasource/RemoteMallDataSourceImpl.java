@@ -13,7 +13,7 @@ import homepunk.work.mall.data.entity.response.MallDetailsResponse;
 import homepunk.work.mall.data.entity.response.MallResponse;
 import homepunk.work.mall.data.repository.datasource.interfaces.MallDataSource;
 import rx.Single;
-import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by Homepunk on 12.05.2017.
@@ -32,7 +32,6 @@ public class RemoteMallDataSourceImpl implements MallDataSource {
     public Single<List<Mall>> getMalls() {
         return mallApi
                 .fetchMalls(userToken)
-                .subscribeOn(Schedulers.newThread())
                 .map(MallResponse::getMalls);
     }
 
@@ -58,6 +57,7 @@ public class RemoteMallDataSourceImpl implements MallDataSource {
 
     @Override
     public Single<MallDetailsResponse> getMallDetailsById(int id) {
-        return mallApi.fetchFullMallInfromation(id, userToken);
+        return mallApi.fetchFullMallInfromation(id, userToken)
+                .doOnError(Timber::e);
     }
 }
