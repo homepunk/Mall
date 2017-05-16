@@ -1,61 +1,48 @@
 package homepunk.work.mall.data.entity;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
 
 import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
+import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-
-import static homepunk.work.mall.data.database.MallContract.CONTENT_AUTHORITY;
-import static homepunk.work.mall.data.database.MallContract.MallEntry.PATH_MALLS;
-import static homepunk.work.mall.data.database.MallContract.SCHEME;
 
 /**
  * Created by Homepunk on 11.05.2017.
  **/
 
-public class Mall implements DatabaseEntity {
+public class Mall implements DatabaseEntity, ResponseEntity {
+    public static final String PATH_MALLS = "malls";
+    public static final String TABLE_NAME_MALL = "mall";
+
     public static final String[] PROJECTION_MALL = {
             COLUMN_ID,
             COLUMN_NAME,
             COLUMN_DESCRIPTION,
             COLUMN_IMAGE,
             COLUMN_LATITUDE,
-            COLUMN_LONGTITUDE};
+            COLUMN_LONGTITUDE
+    };
 
-    public static final Uri CONTENT_URI_MALL = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_MALLS);
-    public static final String CONTENT_TYPE_MALL = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
-    public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
-
-    public static final String MALL_KEY_ID = "id";
-    private static final String MALL_KEY_NAME = "name";
-    private static final String MALL_KEY_IMAGE = "image";
-    private static final String MALL_KEY_LATITUDE = "lat";
-    private static final String MALL_KEY_LONGTITUDE = "lng";
-    private static final String MALL_KEY_DESCRIPTION = "description";
-
-
-    @SerializedName(MALL_KEY_ID)
+    @SerializedName(KEY_ID)
     public int id;
 
-    @SerializedName(MALL_KEY_NAME)
+    @SerializedName(KEY_NAME)
     public String name;
 
-    @SerializedName(MALL_KEY_DESCRIPTION)
-    public String description;
+    @SerializedName(KEY_IMAGE)
+    public String image;
 
-    @SerializedName(MALL_KEY_LATITUDE)
+    @SerializedName(KEY_LATITUDE)
     public double latitude;
 
-    @SerializedName(MALL_KEY_LONGTITUDE)
+    @SerializedName(KEY_LONGTITUDE)
     public double longtitude;
 
-    @SerializedName(MALL_KEY_IMAGE)
-    public String image;
+    @SerializedName(KEY_DESCRIPTION)
+    public String description;
 
     public Mall(MallViewModel mallViewModel) {
         id = mallViewModel.getId();

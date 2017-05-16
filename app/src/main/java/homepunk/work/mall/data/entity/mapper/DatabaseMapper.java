@@ -7,10 +7,10 @@ import homepunk.work.mall.data.entity.Mall;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 /**
- * Created by Homepunk on 11.05.2017.
+ * Created by Homepunk on 16.05.2017.
  **/
 
-public class MallMapper {
+public class DatabaseMapper {
     public static ArrayList<MallViewModel> transform(List<Mall> malls) {
         ArrayList<MallViewModel> mallViewModels = new ArrayList<>();
 

@@ -5,15 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import homepunk.work.mall.data.entity.Floor;
+import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
-public class FloorResponse {
-    private static final String FLOORS_KEY_UPDATE = "update";
-
-    @SerializedName(FLOORS_KEY_UPDATE)
+public class FloorResponse implements ResponseEntity {
+    @SerializedName(KEY_UPDATE)
     List<Floor> floors;
 
     public List<Floor> getFloors() {

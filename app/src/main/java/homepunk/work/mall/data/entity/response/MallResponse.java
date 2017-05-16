@@ -5,19 +5,17 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import homepunk.work.mall.data.entity.Mall;
+import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
  * Created by Homepunk on 21.04.2017.
  **/
 
-public class MallResponse {
-    private static final String MALLS_KEY_UPDATE = "update";
-    private static final String MALLS_KEY_TIMESTAMP = "timestamp";
-
-    @SerializedName(MALLS_KEY_TIMESTAMP)
+public class MallResponse implements ResponseEntity {
+    @SerializedName(KEY_TIMESTAMP)
     private long timestamp;
 
-    @SerializedName(MALLS_KEY_UPDATE)
+    @SerializedName(KEY_UPDATE)
     private List<Mall> malls;
 
     public long getTimestamp() {

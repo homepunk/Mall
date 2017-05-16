@@ -20,9 +20,10 @@ public interface Constants {
     }
 
     interface Endpoint {
-        String LOGIN = "auth/login";
-        String MALLS = "malls/sync";
-        String MALL_DETAILES = "malls/{id}/sync";
+        String LOGIN_ENDPOINT = "auth/login";
+        String MALL_LIST_ENPOINT = "malls/sync";
+        String FULL_MALL_INFORMATION_ENDPOINT = "malls/{id}/sync";
+        String TYPE_CATEGORIES_ENDPOINT = "malls/{id}/types-categories";
     }
 
     interface Preferences {

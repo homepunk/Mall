@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import homepunk.work.mall.data.entity.mapper.MallMapper;
+import homepunk.work.mall.data.entity.mapper.DatabaseMapper;
 import homepunk.work.mall.data.repository.datasource.interfaces.MallDataSource;
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
 import homepunk.work.mall.domain.repository.MallRepository;
@@ -28,9 +28,8 @@ public class MallRepositoryImpl implements MallRepository {
 
     @Override
     public Single<List<MallViewModel>> getMalls() {
-        return dataSource
-                .getMalls()
-                .map(MallMapper::transform);
+        return dataSource.getMalls()
+                         .map(DatabaseMapper::transform);
     }
 
     @Override

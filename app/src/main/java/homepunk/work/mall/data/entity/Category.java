@@ -8,18 +8,17 @@ import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
- * Created by Homepunk on 12.05.2017.
+ * Created by Homepunk on 16.05.2017.
  **/
 
-public class Product implements DatabaseEntity, ResponseEntity {
-    public static final String PATH_PRODUCTS = "products";
-    public static final String TABLE_NAME_PRODUCT = "product";
+public class Category implements DatabaseEntity, ResponseEntity {
+    public static final String PATH_CATEGORIES = "categories";
+    public static final String TABLE_NAME_CATEGORY = "category";
 
-    public static final String[] PROJECTION_PRODUCT = {
+    public static final String[] PROJECTION_CATEGORY = {
             COLUMN_ID,
             COLUMN_NAME,
-            COLUMN_DESCRIPTION,
-            COLUMN_IMAGE
+            COLUMN_DESCRIPTION
     };
 
     @SerializedName(KEY_ID)
@@ -28,17 +27,8 @@ public class Product implements DatabaseEntity, ResponseEntity {
     @SerializedName(KEY_NAME)
     private String name;
 
-    @SerializedName(KEY_IMAGE_URL)
-    private String imageUrl;
-
     @SerializedName(KEY_DESCRIPTION)
     private String description;
-
-    @SerializedName(KEY_TYPE_IDS)
-    private int[] typeIds;
-
-    @SerializedName(KEY_CATEGORY_IDS)
-    private int[] categoryIds;
 
     public int getId() {
         return id;
@@ -64,39 +54,23 @@ public class Product implements DatabaseEntity, ResponseEntity {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public int[] getTypeIds() {
-        return typeIds;
-    }
-
-    public void setTypeIds(int[] typeIds) {
-        this.typeIds = typeIds;
-    }
-
-    public int[] getCategoryIds() {
-        return categoryIds;
-    }
-
-    public void setCategoryIds(int[] categoryIds) {
-        this.categoryIds = categoryIds;
-    }
-
     @Override
     public ContentValues getContentValues() {
-        final ContentValues values = new ContentValues();
+        ContentValues values = new ContentValues();
 
         values.put(COLUMN_ID, id);
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_DESCRIPTION, description);
-        values.put(COLUMN_IMAGE, imageUrl);
 
         return values;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append(id)
+                .append(" ")
+                .append(name)
+                .append(" ").toString();
     }
 }

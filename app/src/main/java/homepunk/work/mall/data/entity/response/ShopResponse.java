@@ -5,15 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import homepunk.work.mall.data.entity.Shop;
+import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
  * Created by Homepunk on 05.05.2017.
  **/
 
-public class ShopResponse {
-    private static final String SHOPS_KEY_UPDATE = "update";
-
-    @SerializedName(SHOPS_KEY_UPDATE)
+public class ShopResponse implements ResponseEntity {
+    @SerializedName(KEY_UPDATE)
     private List<Shop> shops;
 
     public List<Shop> getShops() {

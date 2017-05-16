@@ -2,27 +2,32 @@ package homepunk.work.mall.data.entity.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
+
 /**
  * Created by Homepunk on 10.05.2017.
  **/
 
-public class MallDetailsResponse {
-    private static final String DETAILS_KEY_SHOPS = "shops";
-    private static final String DETAILS_KEY_FLOORS = "floors";
-    private static final String DETAILS_KEY_PRODUCTS = "products";
-    private static final String DETAILS_KEY_PLACEMENTS = "placements";
-
-    @SerializedName(DETAILS_KEY_SHOPS)
+public class MallDetailsResponse implements ResponseEntity {
+    @SerializedName(KEY_SHOPS)
     private ShopResponse shopResponse;
 
-    @SerializedName(DETAILS_KEY_FLOORS)
+    @SerializedName(KEY_FLOORS)
     private FloorResponse floorResponse;
 
-    @SerializedName(DETAILS_KEY_PLACEMENTS)
+    @SerializedName(KEY_PLACEMENTS)
     private PlacementsResponse placementsResponse;
 
-    @SerializedName(DETAILS_KEY_PRODUCTS)
+    @SerializedName(KEY_PRODUCTS)
     private ProductsResponse productsResponse;
+
+    @SerializedName(KEY_PLACEMENT_PRODUCTS)
+    private List<PlacementProductResponse> placementProductResponse;
+
+    @SerializedName(KEY_SHOP_PRODUCTS)
+    private List<ShopProductResponse> shopProductResponse;
 
     public ShopResponse getShopResponse() {
         return shopResponse;
@@ -54,5 +59,21 @@ public class MallDetailsResponse {
 
     public void setProductsResponse(ProductsResponse productsResponse) {
         this.productsResponse = productsResponse;
+    }
+
+    public List<PlacementProductResponse> getPlacementProductResponse() {
+        return placementProductResponse;
+    }
+
+    public void setPlacementProductResponse(List<PlacementProductResponse> placementProductResponse) {
+        this.placementProductResponse = placementProductResponse;
+    }
+
+    public List<ShopProductResponse> getShopProductResponse() {
+        return shopProductResponse;
+    }
+
+    public void setShopProductResponse(List<ShopProductResponse> shopProductResponse) {
+        this.shopProductResponse = shopProductResponse;
     }
 }
