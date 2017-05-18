@@ -10,53 +10,48 @@ import homepunk.work.mall.data.entity.PlacementProduct;
 import homepunk.work.mall.data.entity.PlacementShop;
 import homepunk.work.mall.data.entity.Product;
 import homepunk.work.mall.data.entity.ProductCategory;
-import homepunk.work.mall.data.entity.ShopProduct;
 import homepunk.work.mall.data.entity.ProductType;
 import homepunk.work.mall.data.entity.Shop;
 import homepunk.work.mall.data.entity.ShopCategory;
+import homepunk.work.mall.data.entity.ShopProduct;
 import homepunk.work.mall.data.entity.ShopType;
 import homepunk.work.mall.data.entity.Type;
 import homepunk.work.mall.data.entity.TypeCategory;
-import homepunk.work.mall.data.entity.response.MallDetailsResponse;
-import homepunk.work.mall.data.entity.response.TypeCategoryResponse;
-import rx.Single;
+import rx.Observable;
 
 /**
  * Created by Homepunk on 08.05.2017.
  **/
 
 public interface MallDataSource {
-    Single<List<Mall>> getMalls();
+    Observable<List<Type>> getTypes(int mallId);
 
-    Single<TypeCategoryResponse> getSummaryTypeCategories(int mallId);
+    Observable<List<Shop>> getShops(int mallId);
 
-    Single<List<Floor>> getFloors(int mallId);
+    Observable<List<Floor>> getFloors(int mallId);
 
-    Single<List<Shop>> getShops(int mallId);
+    Observable<List<Mall>> getMalls();
 
-    Single<List<Product>> getProducts(int mallId);
+    Observable<List<Product>> getProducts(int mallId);
 
-    Single<List<Placement>> getPlacements(int mallId);
+    Observable<List<ShopType>> getShopTypes(int mallId);
 
-    Single<MallDetailsResponse> getFullMallInformation(int mallId);
+    Observable<List<Category>> getCategories(int mallId);
 
-    Single<List<Type>> getTypes(int mallId);
+    Observable<List<Placement>> getPlacements(int mallId);
 
-    Single<List<ShopType>> getShopTypes(int mallId);
+    Observable<List<ProductType>> getProductTypes(int mallId);
 
-    Single<List<Category>> getCategories(int mallId);
+    Observable<List<ShopProduct>> getProductShops(int mallId);
 
-    Single<List<ShopProduct>> getProductShops(int mallId);
+    Observable<List<ShopCategory>> getShopCategories(int mallId);
 
-    Single<List<ProductType>> getProductTypes(int mallId);
+    Observable<List<PlacementShop>> getPlacementShops(int mallId);
 
-    Single<List<ShopCategory>> getShopCategories(int mallId);
+    Observable<List<TypeCategory>> getTypeCategories(int mallId);
 
-    Single<List<TypeCategory>> getTypeCategories(int mallId);
+    Observable<List<ProductCategory>> getProductCategories(int mallId);
 
-    Single<List<PlacementShop>> getPlacementShops(int mallId);
+    Observable<List<PlacementProduct>> getPlacementProducts(int mallId);
 
-    Single<List<ProductCategory>> getProductCategories(int mallId);
-
-    Single<List<PlacementProduct>> getPlacementProducts(int mallId);
 }

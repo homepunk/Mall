@@ -1,10 +1,9 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
@@ -53,7 +52,14 @@ public class Shop implements DatabaseEntity, ResponseEntity {
     @SerializedName(KEY_CATEGORY_IDS)
     private int[] categoryIds;
 
-    private List<ShopType> shopType;
+    public Shop(Cursor cursor) {
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.description = cursor.getString(2);
+        this.level = cursor.getString(3);
+        this.color = cursor.getString(4);
+        this.iamgeUrl = cursor.getString(5);
+    }
 
     public int getFloorId() {
         return floorId;

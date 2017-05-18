@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -28,11 +29,18 @@ public class Floor implements DatabaseEntity, ResponseEntity {
     @SerializedName(KEY_MALL_ID)
     private int mallId;
 
+    @SerializedName(KEY_LEVEL)
+    private String level;
+
     @SerializedName(KEY_TYPE)
     private String type;
 
-    @SerializedName(KEY_LEVEL)
-    private String level;
+    public Floor(Cursor cursor) {
+        this.id = cursor.getInt(0);
+        this.mallId = cursor.getInt(1);
+        this.level = cursor.getString(2);
+        this.type = cursor.getString(3);
+    }
 
     @Override
     public ContentValues getContentValues() {

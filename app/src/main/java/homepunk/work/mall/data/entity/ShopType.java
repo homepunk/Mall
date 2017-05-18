@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 
@@ -23,6 +24,11 @@ public class ShopType implements DatabaseEntity {
     public ShopType(int shopId, int typeId) {
         this.shopId = shopId;
         this.typeId = typeId;
+    }
+
+    public ShopType(Cursor cursor) {
+        this.shopId = cursor.getInt(0);
+        this.typeId = cursor.getInt(1);
     }
 
     @Override

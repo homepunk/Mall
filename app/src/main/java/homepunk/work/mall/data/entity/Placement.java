@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -28,11 +29,18 @@ public class Placement implements DatabaseEntity, ResponseEntity {
     @SerializedName(KEY_NAME)
     private String name;
 
+    @SerializedName(KEY_SHOP_ID)
+    private int shopId;
+
     @SerializedName(KEY_COLOR)
     private String color;
 
-    @SerializedName(KEY_SHOP_ID)
-    private int shopId;
+    public Placement(Cursor cursor) {
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.shopId = cursor.getInt(2);
+        this.color = cursor.getString(3);
+    }
 
     @Override
     public ContentValues getContentValues() {

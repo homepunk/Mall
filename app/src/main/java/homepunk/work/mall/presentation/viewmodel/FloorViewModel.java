@@ -12,6 +12,13 @@ public class FloorViewModel implements Serializable {
     private String type;
     private String level;
 
+    public FloorViewModel(int id, int mallId, String type, String level) {
+        this.id = id;
+        this.mallId = mallId;
+        this.type = type;
+        this.level = level;
+    }
+
     public int getId() {
         return id;
     }

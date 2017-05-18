@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.MallListActivity" />
-        <activity android:name=".presentation.activity.MallFloorsActivity" />
+        <activity android:name=".presentation.activity.MallFloorListActivity" />
 
         <provider
             android:name=".data.database.MallProvider"

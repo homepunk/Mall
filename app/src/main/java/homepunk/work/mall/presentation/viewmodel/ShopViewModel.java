@@ -12,6 +12,15 @@ public class ShopViewModel {
     private String color;
     private String iamgeUrl;
 
+    public ShopViewModel(int id, String name, String description, String level, String color, String iamgeUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.color = color;
+        this.iamgeUrl = iamgeUrl;
+    }
+
     public int getId() {
         return id;
     }

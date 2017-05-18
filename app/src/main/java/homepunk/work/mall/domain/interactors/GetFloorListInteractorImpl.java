@@ -7,12 +7,13 @@ import java.util.List;
 import homepunk.work.mall.data.repository.MallRepositoryImpl;
 import homepunk.work.mall.domain.interactors.interfaces.GetFloorListInteractor;
 import homepunk.work.mall.domain.listeners.MallListener;
+import homepunk.work.mall.domain.model.mapper.EntityToViewModelMapper;
 import homepunk.work.mall.domain.repository.MallRepository;
 import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import rx.SingleSubscriber;
-
-import static homepunk.work.mall.utils.RxUtils.applyIOSchedulers;
+import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 /**
  * Created by Homepunk on 08.05.2017.
@@ -26,20 +27,30 @@ public class GetFloorListInteractorImpl implements GetFloorListInteractor {
     }
 
     @Override
-    public void getFloorList(MallViewModel mall, MallListener<List<FloorViewModel>> listener) {
-        mallRepository
-                .getFloorsByMallId(mall.getId())
-                .compose(applyIOSchedulers())
-                .subscribe(new SingleSubscriber<List<FloorViewModel>>() {
-                    @Override
-                    public void onSuccess(List<FloorViewModel> floorList) {
-                        listener.onSuccess(floorList);
-                    }
+    public void getFloorList(int mallid, MallListener<List<FloorViewModel>> listener) {
+        Timber.i("Get floors for mall with id: " + String.valueOf(mallid));
 
-                    @Override
-                    public void onError(Throwable error) {
-                        listener.onFailed(error);
-                    }
-                });
+        mallRepository.getMallFloors(mallid)
+                      .flatMap(Observable::from)
+                      .map(EntityToViewModelMapper::transform)
+                      .toList()
+                      .observeOn(AndroidSchedulers.mainThread())
+                      .subscribe(new Observer<List<FloorViewModel>>() {
+                          @Override
+                          public void onCompleted() {
+
+                          }
+
+                          @Override
+                          public void onError(Throwable error) {
+                            listener.onFailed(error);
+                          }
+
+                          @Override
+                          public void onNext(List<FloorViewModel> floorViewModels) {
+                            Timber.i("Recieved " + String.valueOf(floorViewModels.size()));
+                            listener.onSuccess(floorViewModels);
+                          }
+                      });
     }
 }

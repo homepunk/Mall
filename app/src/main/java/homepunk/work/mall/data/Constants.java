@@ -10,8 +10,11 @@ public interface Constants {
         String ERROR_INSERT_ROW = "Failed to insert row into ";
     }
     interface Keys {
+        String KEY_MALLS = "malls";
         String KEY_BUNDLE = "bundle_key";
-        String KEY_ACCESS_TOKEN = "KEY_ACCESS_TOKEN";
+        String KEY_TIMESTAMP = "key_timestamp";
+        String KEY_ACCESS_TOKEN = "key_access_token";
+        String KEY_MALL_SYNC = "key_mall_sync";
     }
 
     interface BaseUrl {
@@ -27,7 +30,8 @@ public interface Constants {
     }
 
     interface Preferences {
-        String SHARED_PREF_DEF_VALUE = "";
+        long SHARED_PREF_DEF_LONG_VALUE = 0;
         String SHARED_PREF_NAME = "token_store";
+        String SHARED_PREF_DEF_STRING_VALUE = "";
     }
 }

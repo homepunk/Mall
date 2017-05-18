@@ -1,7 +1,12 @@
 package homepunk.work.mall.data.api;
 
+import android.content.Context;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
+import java.io.File;
+
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -16,22 +21,27 @@ import static homepunk.work.mall.data.Constants.BaseUrl.SWAGGER_URL;
 
 public class MallApiConnection {
     private static MallApi mallApiInstance;
-
-    public static MallApi getInstance() {
+    public static MallApi getInstance(Context context) {
         if (mallApiInstance == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-            OkHttpClient client = new OkHttpClient
+            OkHttpClient.Builder clientBuilder = new OkHttpClient
                     .Builder()
                     .retryOnConnectionFailure(false)
                     .addNetworkInterceptor(new StethoInterceptor())
-//                    .addInterceptor(interceptor)
-                    .build();
+                    .addInterceptor(interceptor);
+
+            final File baseDir = context.getCacheDir();
+
+            if (baseDir != null) {
+                final File cacheDir = new File(baseDir, "HttpResponseCache");
+                clientBuilder.cache(new Cache(cacheDir, 50));
+            }
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(SWAGGER_URL)
-                    .client(client)
+                    .client(clientBuilder.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();

@@ -8,4 +8,8 @@ public interface PreferencesDataSource {
     void storeAccessToken(String token);
 
     String retrieveAccessToken();
+
+    void storeLastSyncTimestamp(long timestamp, String key);
+
+    long retrieveLastSyncTimestamp(String key);
 }

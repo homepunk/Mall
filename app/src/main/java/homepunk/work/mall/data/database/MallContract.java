@@ -59,24 +59,12 @@ public class MallContract {
     public static final String CONTENT_AUTHORITY = "homepunk.work.mall";
     public static final String SCHEME = "content://";
 
-    public static final String DEFAULT_SORT_ORDER = "name ASC";
-
-
-    public static HashMap<String, String> transformProjectionToHashMap(String[] projection) {
-        HashMap<String, String> projectionMap = new HashMap<>();
-
-        for (String column : projection) {
-            projectionMap.put(column, column);
-        }
-
-        return projectionMap;
-    }
+    public static final String DEFAULT_SORT_ORDER = "_id ASC";
 
     public static final class MallEntry {
         public static final Uri CONTENT_URI_MALL = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_MALLS);
         public static final String CONTENT_TYPE_MALL = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MALLS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_MALL + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -92,12 +80,11 @@ public class MallContract {
         public static final Uri CONTENT_URI_FLOOR = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_FLOORS);
         public static final String CONTENT_TYPE_FLOOR = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FLOORS;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FLOORS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_FLOOR + " ("
-                + COLUMN_ID + " INTEGER PRIMARY KEY,"
+                + COLUMN_ID + " INTEGER PRIMARY KEY, "
                 + COLUMN_ID_MALL + " INTEGER NOT NULL, "
-                + COLUMN_LEVEL + " TEXT NOT NULL DEFAULT ' ',"
+                + COLUMN_LEVEL + " TEXT NOT NULL DEFAULT ' ', "
                 + COLUMN_TYPE + " TEXT , "
                 + " FOREIGN KEY (" + COLUMN_ID_MALL
                 + ") REFERENCES " + TABLE_NAME_MALL + "(" + COLUMN_ID + ")"
@@ -108,7 +95,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PLACEMENT = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PLACEMENTS);
         public static final String CONTENT_TYPE_PLACEMENT = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENTS;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENTS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PLACEMENT + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -122,7 +108,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PRODUCT = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PRODUCTS);
         public static final String CONTENT_TYPE_PRODUCT = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCTS;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCTS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PRODUCT + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -136,7 +121,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_SHOP = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_SHOPS);
         public static final String CONTENT_TYPE_SHOP = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOPS;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOPS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_SHOP + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -152,7 +136,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_CATEGORY = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_CATEGORIES);
         public static final String CONTENT_TYPE_CATEGORY = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CATEGORIES;
         public static final String CONTENT_ITEM_CATEGORY = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CATEGORIES;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_CATEGORY + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -165,20 +148,18 @@ public class MallContract {
         public static final Uri CONTENT_URI_TYPE = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_TYPES);
         public static final String CONTENT_TYPE_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TYPES;
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TYPES;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_TYPE + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + COLUMN_NAME + " TEXT ,"
                 + COLUMN_DESCRIPTION + " TEXT"
                 + ")";
-    }
 
+    }
     public static final class TypeCategoryEntry {
         public static final Uri CONTENT_URI_TYPE_CATEGORY = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_TYPE_CATEGORIES);
         public static final String CONTENT_TYPE_TYPE_CATEGORY = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TYPE_CATEGORIES;
         public static final String CONTENT_ITEM_TYPE_CATEGORY = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TYPE_CATEGORIES;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_TYPE_CATEGORY + " ("
                 + COLUMN_ID_TYPE + " INTEGER NOT NULL,"
@@ -194,7 +175,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PLACEMENT_PRODUCT= Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_PRODUCT);
         public static final String CONTENT_TYPE_PLACEMENT_PRODUCT= ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_PRODUCT;
         public static final String CONTENT_ITEM_PLACEMENT_PRODUCT= ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_PRODUCT;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PLACEMENT_PRODUCT + " ("
                 + COLUMN_ID_PLACEMENT + " INTEGER NOT NULL,"
@@ -210,7 +190,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PLACEMENT_SHOP = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_SHOP);
         public static final String CONTENT_TYPE_PLACEMENT_SHOP = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_SHOP;
         public static final String CONTENT_ITEM_PLACEMENT_SHOP = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PLACEMENT_SHOP;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PLACEMENT_SHOP + " ("
                 + COLUMN_ID_PLACEMENT + " INTEGER NOT NULL,"
@@ -226,7 +205,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PRODUCT_CATEGORY = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_CATEGORY);
         public static final String CONTENT_TYPE_PRODUCT_CATEGORY = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_CATEGORY;
         public static final String CONTENT_ITEM_PRODUCT_CATEGORY = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_CATEGORY;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PRODUCT_CATEGORY + " ("
                 + COLUMN_ID_PRODUCT + " INTEGER NOT NULL,"
@@ -240,7 +218,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_SHOP_PRODUCT = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_SHOP_PRODUCTS);
         public static final String CONTENT_TYPE_PRODUCT_SHOP = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_PRODUCTS;
         public static final String CONTENT_ITEM_PRODUCT_SHOP = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_PRODUCTS;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_SHOP_PRODUCT + " ("
                 + COLUMN_ID_SHOP + " INTEGER NOT NULL,"
@@ -256,7 +233,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_PRODUCT_TYPE = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_TYPE);
         public static final String CONTENT_TYPE_PRODUCT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_TYPE;
         public static final String CONTENT_ITEM_PRODUCT_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCT_TYPE;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_PRODUCT_TYPE + " ("
                 + COLUMN_ID_PRODUCT + " INTEGER NOT NULL,"
@@ -270,7 +246,6 @@ public class MallContract {
         public static final Uri CONTENT_URI_SHOP_TYPE = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_SHOP_TYPE);
         public static final String CONTENT_TYPE_SHOP_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_TYPE;
         public static final String CONTENT_ITEM_SHOP_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_TYPE;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_SHOP_TYPE + " ("
                 + COLUMN_ID_SHOP + " INTEGER NOT NULL,"
@@ -279,11 +254,11 @@ public class MallContract {
                 + ") REFERENCES " + TABLE_NAME_SHOP + "(" + COLUMN_ID + ")"
                 + ")";
     }
+
     public static final class ShopCategoryEntry {
         public static final Uri CONTENT_URI_SHOP_CATEGORY = Uri.parse(SCHEME + CONTENT_AUTHORITY + "/" + PATH_SHOP_CATEGORY);
         public static final String CONTENT_TYPE_SHOP_CATEGORY = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_CATEGORY;
         public static final String CONTENT_ITEM_SHOP_CATEGORY = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SHOP_CATEGORY;
-
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_SHOP_CATEGORY + " ("
                 + COLUMN_ID_SHOP + " INTEGER NOT NULL,"
@@ -291,5 +266,15 @@ public class MallContract {
                 + " FOREIGN KEY (" + COLUMN_ID_SHOP
                 + ") REFERENCES " + TABLE_NAME_SHOP + "(" + COLUMN_ID + ")"
                 + ")";
+    }
+
+    public static HashMap<String, String> transformProjectionToHashMap(String[] projection) {
+        HashMap<String, String> projectionMap = new HashMap<>();
+
+        for (String column : projection) {
+            projectionMap.put(column, column);
+        }
+
+        return projectionMap;
     }
 }

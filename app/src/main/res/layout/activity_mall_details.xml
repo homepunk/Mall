@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="homepunk.work.mall.presentation.activity.MallFloorsActivity">
+    tools:context="homepunk.work.mall.presentation.activity.MallFloorListActivity">
 
     <FrameLayout
         android:id="@+id/mall_details_frame"

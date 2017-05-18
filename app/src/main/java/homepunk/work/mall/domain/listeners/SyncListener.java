@@ -5,7 +5,5 @@ package homepunk.work.mall.domain.listeners;
  **/
 
 public interface SyncListener {
-    void onSyncSuccess();
-
-    void onSyncFailed();
+    void onSyncUpdate();
 }

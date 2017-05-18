@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
@@ -24,6 +25,11 @@ public class TypeCategory implements DatabaseEntity, ResponseEntity {
     public TypeCategory(int typeId, int categoryId) {
         this.typeId = typeId;
         this.categoryId = categoryId;
+    }
+
+    public TypeCategory(Cursor cursor) {
+        this.typeId = cursor.getInt(0);
+        this.categoryId = cursor.getInt(1);
     }
 
     @Override

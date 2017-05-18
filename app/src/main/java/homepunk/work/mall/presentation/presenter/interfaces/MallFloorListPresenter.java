@@ -1,12 +1,11 @@
 package homepunk.work.mall.presentation.presenter.interfaces;
 
-import homepunk.work.mall.presentation.base.BasePresenter;
 import homepunk.work.mall.presentation.view.MallFloorsView;
 
 /**
  * Created by Homepunk on 24.04.2017.
  **/
 
-public interface MallFloorsPresenter extends BasePresenter<MallFloorsView> {
+public interface MallFloorListPresenter extends Presenter<MallFloorsView> {
     void getFloors();
 }

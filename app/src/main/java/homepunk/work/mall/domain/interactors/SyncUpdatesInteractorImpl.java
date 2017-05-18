@@ -4,7 +4,6 @@ import android.content.Context;
 
 import homepunk.work.mall.data.repository.SyncRepositoryImpl;
 import homepunk.work.mall.domain.interactors.interfaces.SyncUpdatesInteractor;
-import homepunk.work.mall.domain.listeners.SyncListener;
 import homepunk.work.mall.domain.repository.SyncRepository;
 import timber.log.Timber;
 
@@ -21,16 +20,6 @@ public class SyncUpdatesInteractorImpl implements SyncUpdatesInteractor {
 
     @Override
     public void syncAll() {
-            syncRepository.syncAll(new SyncListener() {
-                @Override
-                public void onSyncSuccess() {
-                    Timber.i("success");
-                }
-
-                @Override
-                public void onSyncFailed() {
-                    Timber.e("error");
-                }
-            });
+        syncRepository.sync(() -> Timber.i("success"));
     }
 }

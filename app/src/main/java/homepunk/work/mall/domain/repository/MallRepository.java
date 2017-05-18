@@ -2,25 +2,25 @@ package homepunk.work.mall.domain.repository;
 
 import java.util.List;
 
-import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import homepunk.work.mall.presentation.viewmodel.PlacementViewModel;
-import homepunk.work.mall.presentation.viewmodel.ProductViewModel;
-import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
-import rx.Single;
+import homepunk.work.mall.data.entity.Floor;
+import homepunk.work.mall.data.entity.Mall;
+import homepunk.work.mall.data.entity.Placement;
+import homepunk.work.mall.data.entity.Product;
+import homepunk.work.mall.data.entity.Shop;
+import rx.Observable;
 
 /**
  * Created by Homepunk on 08.05.2017.
  **/
 
 public interface MallRepository {
-    Single<List<MallViewModel>> getMalls();
+    Observable<List<Mall>> getMalls();
 
-    Single<List<FloorViewModel>> getFloorsByMallId(int id);
+    Observable<List<Shop>> getMallShops(int id);
 
-    Single<List<ShopViewModel>> getShopsByMallId(int id);
+    Observable<List<Floor>> getMallFloors(int id);
 
-    Single<List<PlacementViewModel>> getPlacementsByMallId(int id);
+    Observable<List<Product>> getMallProducts(int id);
 
-    Single<List<ProductViewModel>> getProductsByMallId(int id);
+    Observable<List<Placement>> getMallPlacements(int id);
 }

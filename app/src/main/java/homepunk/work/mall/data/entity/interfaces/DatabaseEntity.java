@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
  **/
 
 public interface DatabaseEntity extends BaseColumns {
-    String COLUMN_ID = "id";
+    String COLUMN_ID = "_id";
     String COLUMN_TYPE = "indoors";
     String COLUMN_NAME = "name";
     String COLUMN_IMAGE = "image";

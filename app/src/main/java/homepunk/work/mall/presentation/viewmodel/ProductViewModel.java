@@ -10,6 +10,13 @@ public class ProductViewModel {
     private String description;
     private String imageUrl;
 
+    public ProductViewModel(int id, String name, String description, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+
     public int getId() {
         return id;
     }

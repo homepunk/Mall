@@ -2,31 +2,18 @@ package homepunk.work.mall.data.entity.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import homepunk.work.mall.data.entity.PlacementProduct;
 import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
- * Created by Homepunk on 16.05.2017.
+ * Created by Homepunk on 17.05.2017.
  **/
 
 public class PlacementProductResponse implements ResponseEntity {
-    @SerializedName(KEY_PLACEMENT_ID)
+    @SerializedName(KEY_PLACEMENTS)
     private int placementId;
 
     @SerializedName(KEY_PRODUCT_IDS)
     private int[] productIds;
-
-    public List<PlacementProduct> getPlacementProducts() {
-        List<PlacementProduct> placementProducts = new ArrayList<>();
-        for (int productId : productIds) {
-            placementProducts.add(new PlacementProduct(placementId, productId));
-        }
-
-        return placementProducts;
-    }
 
     public int getPlacementId() {
         return placementId;

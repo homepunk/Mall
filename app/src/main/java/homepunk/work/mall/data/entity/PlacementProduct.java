@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import homepunk.work.mall.data.entity.interfaces.DatabaseEntity;
 
@@ -23,6 +24,11 @@ public class PlacementProduct implements DatabaseEntity {
     public PlacementProduct(int placementId, int productId) {
         this.placementId = placementId;
         this.productId = productId;
+    }
+
+    public PlacementProduct(Cursor cursor) {
+        this.placementId = cursor.getInt(0);
+        this.productId = cursor.getInt(1);
     }
 
     @Override

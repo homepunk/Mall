@@ -4,16 +4,17 @@ import android.content.Context;
 
 import java.util.List;
 
-import homepunk.work.mall.data.entity.mapper.DatabaseMapper;
+import homepunk.work.mall.data.entity.Floor;
+import homepunk.work.mall.data.entity.Mall;
+import homepunk.work.mall.data.entity.Placement;
+import homepunk.work.mall.data.entity.Product;
+import homepunk.work.mall.data.entity.Shop;
+import homepunk.work.mall.data.repository.datasource.interfaces.DatabaseMallDataSource;
 import homepunk.work.mall.data.repository.datasource.interfaces.MallDataSource;
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
 import homepunk.work.mall.domain.repository.MallRepository;
-import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import homepunk.work.mall.presentation.viewmodel.PlacementViewModel;
-import homepunk.work.mall.presentation.viewmodel.ProductViewModel;
-import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
-import rx.Single;
+import rx.Observable;
+import timber.log.Timber;
 
 /**
  * Created by Homepunk on 08.05.2017.
@@ -21,35 +22,54 @@ import rx.Single;
 
 public class MallRepositoryImpl implements MallRepository {
     private MallDataSource dataSource;
+    private DatabaseMallDataSource localDataSource;
 
     public MallRepositoryImpl(Context context) {
-        this.dataSource = new DataSourceManager(context).getDatabaseDataSource();
+        this.dataSource = new DataSourceManager(context).getRemoteDataSource();
+        this.localDataSource = new DataSourceManager(context).getDatabaseDataSource();
     }
 
     @Override
-    public Single<List<MallViewModel>> getMalls() {
-        return dataSource.getMalls()
-                         .map(DatabaseMapper::transform);
+    public Observable<List<Mall>> getMalls() {
+        return localDataSource.getMalls()
+                .flatMap(malls -> {
+                    if (malls.size() > 0) {
+                        Timber.i("Malls from local storage");
+                        return Observable.just(malls);
+                    } else {
+                        Timber.i("Malls from remote storage");
+                        return dataSource.getMalls();
+                    }
+                });
+
     }
 
     @Override
-    public Single<List<FloorViewModel>> getFloorsByMallId(int id) {
-        return null;
+    public Observable<List<Shop>> getMallShops(int id) {
+        return dataSource.getShops(id);
     }
 
     @Override
-    public Single<List<ShopViewModel>> getShopsByMallId(int id) {
-        return null;
+    public Observable<List<Floor>> getMallFloors(int id) {
+        return localDataSource.getFloors(id)
+                .flatMap(floors -> {
+                    if (floors.size() > 0) {
+                        Timber.i("Floors from local storage");
+                        return Observable.just(floors);
+                    } else {
+                        Timber.i("Floors from remote storage");
+                        return dataSource.getFloors(id);
+                    }
+                });
     }
 
     @Override
-    public Single<List<PlacementViewModel>> getPlacementsByMallId(int id) {
-        return null;
+    public Observable<List<Product>> getMallProducts(int id) {
+        return dataSource.getProducts(id);
     }
 
     @Override
-    public Single<List<ProductViewModel>> getProductsByMallId(int id) {
-        return null;
+    public Observable<List<Placement>> getMallPlacements(int id) {
+        return dataSource.getPlacements(id);
     }
-
 }

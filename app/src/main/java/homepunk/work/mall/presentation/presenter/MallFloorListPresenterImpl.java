@@ -7,7 +7,8 @@ import java.util.List;
 import homepunk.work.mall.domain.interactors.GetFloorListInteractorImpl;
 import homepunk.work.mall.domain.interactors.interfaces.GetFloorListInteractor;
 import homepunk.work.mall.domain.listeners.MallListener;
-import homepunk.work.mall.presentation.presenter.interfaces.MallFloorsPresenter;
+import homepunk.work.mall.presentation.base.BasePresenter;
+import homepunk.work.mall.presentation.presenter.interfaces.MallFloorListPresenter;
 import homepunk.work.mall.presentation.view.MallFloorsView;
 import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
@@ -19,25 +20,17 @@ import static homepunk.work.mall.presentation.viewmodel.MallViewModel.MALL_KEY_I
  * Created by Homepunk on 24.04.2017.
  **/
 
-public class MallFloorsPresenterImpl implements MallFloorsPresenter {
-    private MallFloorsView view;
+public class MallFloorListPresenterImpl extends BasePresenter<MallFloorsView> implements MallFloorListPresenter {
     private GetFloorListInteractor interactor;
-
-    public MallFloorsPresenterImpl() {
-    }
-
-    @Override
-    public void init(MallFloorsView view) {
-        this.view = view;
-        this.interactor = new GetFloorListInteractorImpl(view.getContext());
-    }
 
     @Override
     public void getFloors() {
+        this.interactor = new GetFloorListInteractorImpl(view.getContext());
+
         MallViewModel mall= getMallFromIntent();
 
         if (mall != null) {
-            interactor.getFloorList(mall, new MallListener<List<FloorViewModel>>() {
+            interactor.getFloorList(mall.getId(), new MallListener<List<FloorViewModel>>() {
                 @Override
                 public void onSuccess(List<FloorViewModel> floorViewModels) {
                     if (view != null) {

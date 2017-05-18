@@ -38,7 +38,7 @@ public class MallListActivity extends BaseActivity implements MallListView {
     protected void onResume() {
         super.onResume();
 
-//        mainMallsPresenter.getMalls();
+        mainMallsPresenter.getMalls();
     }
 
     @Override

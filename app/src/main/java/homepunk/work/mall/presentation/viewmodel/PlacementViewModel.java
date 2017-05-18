@@ -10,6 +10,13 @@ public class PlacementViewModel {
     private String name;
     private String color;
 
+    public PlacementViewModel(int id, int shopId, String name, String color) {
+        this.id = id;
+        this.shopId = shopId;
+        this.name = name;
+        this.color = color;
+    }
+
     public int getId() {
         return id;
     }

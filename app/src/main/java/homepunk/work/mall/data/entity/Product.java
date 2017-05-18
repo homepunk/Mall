@@ -1,6 +1,7 @@
 package homepunk.work.mall.data.entity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -39,6 +40,13 @@ public class Product implements DatabaseEntity, ResponseEntity {
 
     @SerializedName(KEY_CATEGORY_IDS)
     private int[] categoryIds;
+
+    public Product(Cursor cursor) {
+        id = cursor.getInt(0);
+        name = cursor.getString(1);
+        description = cursor.getString(2);
+        imageUrl = cursor.getString(3);
+    }
 
     public int getId() {
         return id;

@@ -7,7 +7,8 @@ import homepunk.work.mall.data.repository.datasource.interfaces.PreferencesDataS
 import homepunk.work.mall.presentation.MallApplication;
 
 import static homepunk.work.mall.data.Constants.Keys.KEY_ACCESS_TOKEN;
-import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_DEF_VALUE;
+import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_DEF_LONG_VALUE;
+import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_DEF_STRING_VALUE;
 import static homepunk.work.mall.data.Constants.Preferences.SHARED_PREF_NAME;
 
 /**
@@ -23,12 +24,23 @@ public class PreferencesDataSourceImpl implements PreferencesDataSource {
 
     @Override
     public void storeAccessToken(String token) {
-        sharedPreferences.edit().clear().apply();
+        sharedPreferences.edit().remove(KEY_ACCESS_TOKEN).apply();
         sharedPreferences.edit().putString(KEY_ACCESS_TOKEN, token).apply();
     }
 
     @Override
     public String retrieveAccessToken() {
-        return sharedPreferences.getString(KEY_ACCESS_TOKEN, SHARED_PREF_DEF_VALUE);
+        return sharedPreferences.getString(KEY_ACCESS_TOKEN, SHARED_PREF_DEF_STRING_VALUE);
+    }
+
+    @Override
+    public void storeLastSyncTimestamp(long timestamp, String key) {
+        sharedPreferences.edit().remove(key).apply();
+        sharedPreferences.edit().putLong(key, timestamp).apply();
+    }
+
+    @Override
+    public long retrieveLastSyncTimestamp(String key) {
+        return sharedPreferences.getLong(key, SHARED_PREF_DEF_LONG_VALUE);
     }
 }

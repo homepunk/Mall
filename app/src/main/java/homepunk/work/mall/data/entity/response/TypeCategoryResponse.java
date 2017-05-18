@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import homepunk.work.mall.data.entity.Type;
 import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 /**
@@ -12,35 +13,35 @@ import homepunk.work.mall.data.entity.interfaces.ResponseEntity;
 
 public class TypeCategoryResponse implements ResponseEntity {
     @SerializedName(KEY_TYPES)
-    private TypeResponse typeResponse;
+    private TypeResponse types;
 
     @SerializedName(KEY_CATEGORIES)
-    private CategoryResponse categoryResponse;
+    private CategoryResponse categories;
 
     @SerializedName(KEY_TYPE_CATEGORIES)
-    private List<TypeCategoriesResponse> typeCategoriesResponse;
+    private List<TypeCategoriesResponse> typeCategories;
 
-    public TypeResponse getTypeResponse() {
-        return typeResponse;
+    public BaseResponse<Type> getTypes() {
+        return types;
     }
 
-    public void setTypeResponse(TypeResponse typeResponse) {
-        this.typeResponse = typeResponse;
+    public void setTypes(TypeResponse types) {
+        this.types = types;
     }
 
-    public CategoryResponse getCategoryResponse() {
-        return categoryResponse;
+    public CategoryResponse getCategories() {
+        return categories;
     }
 
-    public void setCategoryResponse(CategoryResponse categoryResponse) {
-        this.categoryResponse = categoryResponse;
+    public void setCategories(CategoryResponse categories) {
+        this.categories = categories;
     }
 
-    public List<TypeCategoriesResponse> getTypeCategoriesResponse() {
-        return typeCategoriesResponse;
+    public List<TypeCategoriesResponse> getTypeCategories() {
+        return typeCategories;
     }
 
-    public void setTypeCategoriesResponse(List<TypeCategoriesResponse> typeCategoriesResponse) {
-        this.typeCategoriesResponse = typeCategoriesResponse;
+    public void setTypeCategories(List<TypeCategoriesResponse> typeCategories) {
+        this.typeCategories = typeCategories;
     }
 }

@@ -1,4 +1,4 @@
-package homepunk.work.mall.presentation.base;
+package homepunk.work.mall.presentation.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.Context;
  * Created by Homepunk on 21.04.2017.
  **/
 
-public interface BaseView {
+public interface View {
     Activity getActivity();
 
     Context getContext();

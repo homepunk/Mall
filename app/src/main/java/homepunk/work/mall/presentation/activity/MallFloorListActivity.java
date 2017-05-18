@@ -10,18 +10,18 @@ import java.util.List;
 import butterknife.Bind;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.base.BaseActivity;
-import homepunk.work.mall.presentation.presenter.MallFloorsPresenterImpl;
-import homepunk.work.mall.presentation.presenter.interfaces.MallFloorsPresenter;
+import homepunk.work.mall.presentation.presenter.MallFloorListPresenterImpl;
+import homepunk.work.mall.presentation.presenter.interfaces.MallFloorListPresenter;
 import homepunk.work.mall.presentation.view.MallFloorsView;
 import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 
-public class MallFloorsActivity extends BaseActivity implements MallFloorsView {
+public class MallFloorListActivity extends BaseActivity implements MallFloorsView {
     @Bind(R.id.mall_details_image)
     ImageView mallImage;
     @Bind(R.id.mall_details_description)
     TextView mallDescription;
 
-    private MallFloorsPresenter detailsPresenter;
+    private MallFloorListPresenter detailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MallFloorsActivity extends BaseActivity implements MallFloorsView {
     }
 
     private void initPresenter() {
-        detailsPresenter = new MallFloorsPresenterImpl();
+        detailsPresenter = new MallFloorListPresenterImpl();
         detailsPresenter.init(this);
     }
 }

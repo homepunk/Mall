@@ -14,6 +14,7 @@ public interface ResponseEntity {
     String KEY_LATITUDE = "lat";
     String KEY_TYPE = "indoors";
     String KEY_UPDATE = "update";
+    String KEY_DELETE = "delete";
     String KEY_HEIGHT = "height";
     String KEY_LONGTITUDE = "lng";
     String KEY_MALL_ID = "mall_id";

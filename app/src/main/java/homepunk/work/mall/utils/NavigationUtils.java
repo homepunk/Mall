@@ -3,7 +3,7 @@ package homepunk.work.mall.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import homepunk.work.mall.presentation.activity.MallFloorsActivity;
+import homepunk.work.mall.presentation.activity.MallFloorListActivity;
 import homepunk.work.mall.presentation.activity.MallListActivity;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.presentation.viewmodel.UserViewModel;
@@ -24,7 +24,7 @@ public class NavigationUtils {
     }
 
     public static void navigateToMallDetails(Context context, MallViewModel mall) {
-        Intent intent = new Intent(context, MallFloorsActivity.class);
+        Intent intent = new Intent(context, MallFloorListActivity.class);
 
         intent.putExtra(MALL_KEY_ID, mall);
         context.startActivity(intent);

@@ -39,6 +39,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
         initPresenter();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public void onLoginSuccess(UserViewModel user) {
