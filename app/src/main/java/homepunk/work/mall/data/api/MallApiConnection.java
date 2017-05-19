@@ -10,7 +10,7 @@ import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static homepunk.work.mall.data.Constants.BaseUrl.SWAGGER_URL;
@@ -39,11 +39,12 @@ public class MallApiConnection {
                 clientBuilder.cache(new Cache(cacheDir, 50));
             }
 
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(SWAGGER_URL)
                     .client(clientBuilder.build())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
 
             mallApiInstance = retrofit.create(MallApi.class);

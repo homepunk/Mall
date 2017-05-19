@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.base.BaseActivity;
@@ -18,13 +19,13 @@ import homepunk.work.mall.presentation.view.LoginView;
 import homepunk.work.mall.presentation.viewmodel.UserViewModel;
 
 public class LoginActivity extends BaseActivity implements LoginView {
-    @Bind(R.id.login_form)
-    View loginForm;
-    @Bind(R.id.password)
+    @BindView(R.id.login_form)
+    ScrollView loginForm;
+    @BindView(R.id.password)
     EditText password;
-    @Bind(R.id.login_progress)
-    View progress;
-    @Bind(R.id.email)
+    @BindView(R.id.login_progress)
+    ProgressBar progress;
+    @BindView(R.id.email)
     AutoCompleteTextView email;
 
     private int defaultAnimTime;
@@ -37,6 +38,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         initUI();
         initPresenter();
+        loginPresenter.verifyUserAuthentication();
     }
 
     @Override
@@ -46,12 +48,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void onLoginSuccess(UserViewModel user) {
-        loginPresenter.navigateToMainScreen(user);
+        loginPresenter.navigateToMallListActivity();
     }
 
     @Override
     public void onLoginError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        showToast(error);
     }
 
     @Override
@@ -89,8 +91,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.sign_in_button)
     public void onSignInButtonClick() {
-        loginPresenter.login(email.getText().toString(),
-                password.getText().toString());
+        loginPresenter.login(email.getText().toString(), password.getText().toString());
     }
 
     private void initUI() {

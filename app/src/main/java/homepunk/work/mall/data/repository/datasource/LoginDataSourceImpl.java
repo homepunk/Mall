@@ -9,7 +9,7 @@ import homepunk.work.mall.data.repository.datasource.interfaces.PreferencesDataS
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
 import homepunk.work.mall.domain.model.UserCredentials;
 import homepunk.work.mall.presentation.viewmodel.UserViewModel;
-import rx.Single;
+import io.reactivex.Single;
 import timber.log.Timber;
 
 /**

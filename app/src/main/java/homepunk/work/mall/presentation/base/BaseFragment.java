@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -41,6 +42,10 @@ public abstract class BaseFragment extends Fragment {
     private Serializable getExtrasFromBundle() {
         Bundle bundle = getArguments();
         return bundle != null ? bundle.getSerializable(KEY_BUNDLE) : null;
+    }
+
+    protected void showErrorToast(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
 

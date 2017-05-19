@@ -3,11 +3,11 @@ package homepunk.work.mall.data.repository;
 import android.content.Context;
 
 import homepunk.work.mall.data.entity.Mall;
+import homepunk.work.mall.data.repository.datasource.interfaces.DatabaseMallDataSource;
 import homepunk.work.mall.data.repository.datasource.interfaces.RemoteMallDataSource;
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
-import homepunk.work.mall.domain.listeners.SyncListener;
 import homepunk.work.mall.domain.repository.SyncRepository;
-import rx.schedulers.Schedulers;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -16,25 +16,29 @@ import timber.log.Timber;
 
 public class SyncRepositoryImpl implements SyncRepository {
     private RemoteMallDataSource remoteDataSource;
+    private DatabaseMallDataSource localDataSource;
 
     public SyncRepositoryImpl(Context context) {
         DataSourceManager dataSourceManager = new DataSourceManager(context);
 
         remoteDataSource = dataSourceManager.getRemoteDataSource();
+        localDataSource = dataSourceManager.getDatabaseDataSource();
     }
 
     @Override
-    public void sync(SyncListener listener) {
-        Timber.i("Syncing...");
-        remoteDataSource.getMallsResponse()
-                        .subscribeOn(Schedulers.io());
-    }
-
-    private void syncMallRecords(Mall mall) {
+    public void syncMallRecords(Mall mall) {
         remoteDataSource.getMallSyncReponse(mall.getId())
                 .subscribeOn(Schedulers.io());
 
         remoteDataSource.getTypeCategoryResponse(mall.getId())
-                .subscribeOn(Schedulers.trampoline());
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public void syncMallList() {
+        Timber.i("Syncing starts...");
+        remoteDataSource.getMallsResponse()
+                        .subscribeOn(Schedulers.io());
+
     }
 }

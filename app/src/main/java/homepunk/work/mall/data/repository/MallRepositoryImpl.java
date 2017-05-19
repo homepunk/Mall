@@ -13,7 +13,7 @@ import homepunk.work.mall.data.repository.datasource.interfaces.DatabaseMallData
 import homepunk.work.mall.data.repository.datasource.interfaces.MallDataSource;
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
 import homepunk.work.mall.domain.repository.MallRepository;
-import rx.Observable;
+import io.reactivex.Observable;
 import timber.log.Timber;
 
 /**
@@ -35,7 +35,7 @@ public class MallRepositoryImpl implements MallRepository {
                 .flatMap(malls -> {
                     if (malls.size() > 0) {
                         Timber.i("Malls from local storage");
-                        return Observable.just(malls);
+                        return io.reactivex.Observable.just(malls);
                     } else {
                         Timber.i("Malls from remote storage");
                         return dataSource.getMalls();
@@ -49,16 +49,17 @@ public class MallRepositoryImpl implements MallRepository {
         return dataSource.getShops(id);
     }
 
+
     @Override
     public Observable<List<Floor>> getMallFloors(int id) {
-        return localDataSource.getFloors(id)
+        return localDataSource.getMallFloors(id)
                 .flatMap(floors -> {
                     if (floors.size() > 0) {
                         Timber.i("Floors from local storage");
                         return Observable.just(floors);
                     } else {
                         Timber.i("Floors from remote storage");
-                        return dataSource.getFloors(id);
+                        return dataSource.getMallFloors(id);
                     }
                 });
     }

@@ -17,8 +17,19 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
     private LoginInteractor loginInteractor;
 
     @Override
-    public void navigateToMainScreen(UserViewModel user) {
-        NavigationUtils.navigateToHomeScreen(view.getContext(), user);
+    public void navigateToMallListActivity() {
+        NavigationUtils.navigateToHomeScreen(view.getContext());
+    }
+
+    @Override
+    public void verifyUserAuthentication() {
+        if (view != null) {
+            loginInteractor = new LoginInteractorImpl(view.getContext());
+
+            if (loginInteractor.isUserAuthenticated()) {
+                navigateToMallListActivity();
+            }
+        }
     }
 
     @Override
@@ -26,8 +37,6 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
         if (view == null) {
             return;
         }
-
-        loginInteractor = new LoginInteractorImpl(view.getContext());
 
         boolean error = false;
         view.showProgressDialog(true);
@@ -64,6 +73,4 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
             });
         }
     }
-
-
 }

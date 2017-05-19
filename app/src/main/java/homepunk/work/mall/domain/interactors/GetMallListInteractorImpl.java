@@ -10,9 +10,11 @@ import homepunk.work.mall.domain.listeners.MallListener;
 import homepunk.work.mall.domain.model.mapper.EntityToViewModelMapper;
 import homepunk.work.mall.domain.repository.MallRepository;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -29,26 +31,27 @@ public class GetMallListInteractorImpl implements GetMallListInteractor {
     @Override
     public void getMalls(MallListener<List<MallViewModel>> listener) {
         mallRepository.getMalls()
-                      .flatMap(Observable::from)
-                      .map(EntityToViewModelMapper::transform)
-                      .toList()
-                      .observeOn(AndroidSchedulers.mainThread())
-                      .subscribe(new Subscriber<List<MallViewModel>>() {
-                          @Override
-                          public void onCompleted() {
+                .subscribeOn(Schedulers.io())
+                .flatMap(Observable::fromIterable)
+                .map(EntityToViewModelMapper::transform)
+                .toList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<MallViewModel>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                          }
+                    }
 
-                          @Override
-                          public void onError(Throwable error) {
-                              listener.onFailed(error);
-                          }
+                    @Override
+                    public void onSuccess(List<MallViewModel> mallViewModels) {
+                        Timber.i("Recieved malls: " + String.valueOf(mallViewModels.size()));
+                        listener.onSuccess(mallViewModels);
+                    }
 
-                          @Override
-                          public void onNext(List<MallViewModel> mallViewModels) {
-                              Timber.i("Recieved malls: " + String.valueOf(mallViewModels.size()));
-                              listener.onSuccess(mallViewModels);
-                          }
-                      });
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
     }
 }

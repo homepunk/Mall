@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.viewmodel.MallViewModel;
@@ -55,20 +55,20 @@ public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MallHolder> {
         return malls.size();
     }
 
-    public void updateMalls(List<MallViewModel> malls) {
+    public void update(List<MallViewModel> malls) {
         this.malls.clear();
         this.malls.addAll(malls);
         notifyDataSetChanged();
     }
 
     public class MallHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.item_mall_description)
+        @BindView(R.id.item_mall_description)
         TextView description;
-        @Bind(R.id.item_mall_image)
+        @BindView(R.id.item_mall_image)
         ImageView image;
-        @Bind(R.id.item_mall_name)
+        @BindView(R.id.item_mall_name)
         TextView name;
-        @Bind(R.id.item_mall_progress_bar)
+        @BindView(R.id.item_mall_progress_bar)
         ProgressBar progress;
 
         public MallHolder(View root) {

@@ -17,7 +17,7 @@ import homepunk.work.mall.data.entity.ShopProduct;
 import homepunk.work.mall.data.entity.ShopType;
 import homepunk.work.mall.data.entity.Type;
 import homepunk.work.mall.data.entity.TypeCategory;
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by Homepunk on 08.05.2017.
@@ -28,7 +28,7 @@ public interface MallDataSource {
 
     Observable<List<Shop>> getShops(int mallId);
 
-    Observable<List<Floor>> getFloors(int mallId);
+    Observable<List<Floor>> getMallFloors(int mallId);
 
     Observable<List<Mall>> getMalls();
 

@@ -7,7 +7,7 @@ import homepunk.work.mall.data.entity.Mall;
 import homepunk.work.mall.data.entity.Placement;
 import homepunk.work.mall.data.entity.Product;
 import homepunk.work.mall.data.entity.Shop;
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by Homepunk on 08.05.2017.

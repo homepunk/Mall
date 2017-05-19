@@ -2,23 +2,22 @@ package homepunk.work.mall.presentation.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.adapter.MallAdapter;
 import homepunk.work.mall.presentation.base.BaseActivity;
-import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 import homepunk.work.mall.presentation.listener.RecyclerClickListener;
 import homepunk.work.mall.presentation.presenter.MallListPresenterImpl;
 import homepunk.work.mall.presentation.presenter.interfaces.MallListPresenter;
 import homepunk.work.mall.presentation.view.MallListView;
+import homepunk.work.mall.presentation.viewmodel.MallViewModel;
 
 public class MallListActivity extends BaseActivity implements MallListView {
-    @Bind(R.id.malls_recycle_view)
+    @BindView(R.id.malls_recycle_view)
     RecyclerView mallsRecycler;
 
     private MallListPresenter mainMallsPresenter;
@@ -43,14 +42,12 @@ public class MallListActivity extends BaseActivity implements MallListView {
 
     @Override
     public void onResult(List<MallViewModel> malls) {
-        if (malls != null) {
-            mallAdapter.updateMalls(malls);
-        }
+        mallAdapter.update(malls);
     }
 
     @Override
     public void onError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        showToast(error);
     }
 
     private void initUI() {

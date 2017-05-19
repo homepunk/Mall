@@ -37,9 +37,8 @@ import homepunk.work.mall.data.repository.datasource.interfaces.DatabaseMallData
 import homepunk.work.mall.data.repository.datasource.interfaces.PreferencesDataSource;
 import homepunk.work.mall.data.repository.datasource.interfaces.RemoteMallDataSource;
 import homepunk.work.mall.data.repository.manager.DataSourceManager;
-import rx.Observable;
-import rx.Single;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import timber.log.Timber;
 
 import static homepunk.work.mall.data.Constants.Keys.KEY_MALLS;
@@ -74,9 +73,7 @@ public class RemoteMallDataSourceImpl implements RemoteMallDataSource {
     }
 
     @Override
-    public Observable<List<Floor>> getFloors(int mallId) {
-        Timber.i("Fetching floors for mall with id: " + String.valueOf(mallId));
-
+    public Observable<List<Floor>> getMallFloors(int mallId) {
         return getMallSyncReponse(mallId).map(response -> response.getFloors().getUpdates()).toObservable();
     }
 
@@ -137,7 +134,6 @@ public class RemoteMallDataSourceImpl implements RemoteMallDataSource {
 
     @Override
     public Observable<List<Mall>> getMalls() {
-        Timber.i("From Remote");
         return getMallsResponse().map(BaseResponse::getUpdates).toObservable();
     }
 
@@ -147,7 +143,6 @@ public class RemoteMallDataSourceImpl implements RemoteMallDataSource {
         Timber.i("Fetching by token: " + userToken + " with malls Timestamp: " + timestamp);
 
         return mallApi.fetchMalls(timestamp, userToken)
-                .subscribeOn(Schedulers.io())
                 .doOnSuccess(response -> {
                     localDataSource.saveMalls(response.getUpdates());
                     preferencesDataSource.storeLastSyncTimestamp(response.getSyncTimestamp(), KEY_MALLS);
@@ -157,10 +152,8 @@ public class RemoteMallDataSourceImpl implements RemoteMallDataSource {
     @Override
     public Single<MallSyncResponse> getMallSyncReponse(int id) {
         final long timestamp = preferencesDataSource.retrieveLastSyncTimestamp(String.valueOf(id));
-        Timber.i("Fetching " + id + " with timestamp: " + timestamp);
 
         return mallApi.fetchFullMallInfromation(timestamp, id, userToken)
-                .subscribeOn(Schedulers.io())
                 .doOnSuccess(response -> {
                     saveAllMallResponseRecords(response);
                     preferencesDataSource.storeLastSyncTimestamp(response.getTimeStamp(), String.valueOf(id));
@@ -174,6 +167,7 @@ public class RemoteMallDataSourceImpl implements RemoteMallDataSource {
     }
 
     private void saveAllTypeCategoriesResponseRecords(TypeCategoryResponse response) {
+        Timber.i("Saving all mall type categories records to database...");
         localDataSource.saveTypes(response.getTypes().getUpdates());
         localDataSource.saveCategories(response.getCategories().getUpdates());
         localDataSource.saveTypeCategories(TypeCategoryMapper.transform(response));

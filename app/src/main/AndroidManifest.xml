@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.MallListActivity" />
-        <activity android:name=".presentation.activity.MallFloorListActivity" />
+        <activity android:name=".presentation.activity.MallActivity" />
+        <activity android:name=".presentation.base.BaseActivity" />
 
         <provider
             android:name=".data.database.MallProvider"
@@ -32,7 +33,7 @@
         <service
             android:name=".presentation.service.MallSyncService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
     </application>
 
 </manifest>

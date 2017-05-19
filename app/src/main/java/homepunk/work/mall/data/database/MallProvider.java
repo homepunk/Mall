@@ -32,14 +32,14 @@ import static homepunk.work.mall.data.database.MallContract.ProductCategoryEntry
 import static homepunk.work.mall.data.database.MallContract.ProductCategoryEntry.CONTENT_URI_PRODUCT_CATEGORY;
 import static homepunk.work.mall.data.database.MallContract.ProductEntry.CONTENT_TYPE_PRODUCT;
 import static homepunk.work.mall.data.database.MallContract.ProductEntry.CONTENT_URI_PRODUCT;
-import static homepunk.work.mall.data.database.MallContract.ShopProductEntry.CONTENT_TYPE_PRODUCT_SHOP;
-import static homepunk.work.mall.data.database.MallContract.ShopProductEntry.CONTENT_URI_SHOP_PRODUCT;
 import static homepunk.work.mall.data.database.MallContract.ProductTypeEntry.CONTENT_TYPE_PRODUCT_TYPE;
 import static homepunk.work.mall.data.database.MallContract.ProductTypeEntry.CONTENT_URI_PRODUCT_TYPE;
 import static homepunk.work.mall.data.database.MallContract.ShopCategoryEntry.CONTENT_TYPE_SHOP_CATEGORY;
 import static homepunk.work.mall.data.database.MallContract.ShopCategoryEntry.CONTENT_URI_SHOP_CATEGORY;
 import static homepunk.work.mall.data.database.MallContract.ShopEntry.CONTENT_TYPE_SHOP;
 import static homepunk.work.mall.data.database.MallContract.ShopEntry.CONTENT_URI_SHOP;
+import static homepunk.work.mall.data.database.MallContract.ShopProductEntry.CONTENT_TYPE_PRODUCT_SHOP;
+import static homepunk.work.mall.data.database.MallContract.ShopProductEntry.CONTENT_URI_SHOP_PRODUCT;
 import static homepunk.work.mall.data.database.MallContract.ShopTypeEntry.CONTENT_TYPE_SHOP_TYPE;
 import static homepunk.work.mall.data.database.MallContract.ShopTypeEntry.CONTENT_URI_SHOP_TYPE;
 import static homepunk.work.mall.data.database.MallContract.TypeCategoryEntry.CONTENT_TYPE_TYPE_CATEGORY;
@@ -72,17 +72,17 @@ import static homepunk.work.mall.data.entity.ProductCategory.PATH_PRODUCT_CATEGO
 import static homepunk.work.mall.data.entity.ProductCategory.PROJECTION_PRODUCT_CATEGORY;
 import static homepunk.work.mall.data.entity.ProductCategory.TABLE_NAME_PRODUCT_CATEGORY;
 import static homepunk.work.mall.data.entity.ProductType.PATH_PRODUCT_TYPE;
-import static homepunk.work.mall.data.entity.ShopCategory.PATH_SHOP_CATEGORY;
-import static homepunk.work.mall.data.entity.ShopProduct.PATH_SHOP_PRODUCTS;
-import static homepunk.work.mall.data.entity.ShopProduct.PROJECTION_SHOP_PRODUCT;
-import static homepunk.work.mall.data.entity.ShopProduct.TABLE_NAME_SHOP_PRODUCT;
 import static homepunk.work.mall.data.entity.ProductType.PROJECTION_PRODUCT_TYPE;
 import static homepunk.work.mall.data.entity.ProductType.TABLE_NAME_PRODUCT_TYPE;
 import static homepunk.work.mall.data.entity.Shop.PATH_SHOPS;
 import static homepunk.work.mall.data.entity.Shop.PROJECTION_SHOP;
 import static homepunk.work.mall.data.entity.Shop.TABLE_NAME_SHOP;
+import static homepunk.work.mall.data.entity.ShopCategory.PATH_SHOP_CATEGORY;
 import static homepunk.work.mall.data.entity.ShopCategory.PROJECTION_SHOP_CATEGORY;
 import static homepunk.work.mall.data.entity.ShopCategory.TABLE_NAME_SHOP_CATEGORY;
+import static homepunk.work.mall.data.entity.ShopProduct.PATH_SHOP_PRODUCTS;
+import static homepunk.work.mall.data.entity.ShopProduct.PROJECTION_SHOP_PRODUCT;
+import static homepunk.work.mall.data.entity.ShopProduct.TABLE_NAME_SHOP_PRODUCT;
 import static homepunk.work.mall.data.entity.ShopType.PATH_SHOP_TYPE;
 import static homepunk.work.mall.data.entity.ShopType.PROJECTION_SHOP_TYPE;
 import static homepunk.work.mall.data.entity.ShopType.TABLE_NAME_SHOP_TYPE;
@@ -498,4 +498,9 @@ public class MallProvider extends ContentProvider {
         resolver.notifyChange(uri, null);
     }
 
+    public Cursor rawQuery(int id) {
+        final SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+        return  database.rawQuery("SELECT * FROM floor WHERE _id = ?" + String.valueOf(id), new String[]{String.valueOf(id)});
+    }
 }

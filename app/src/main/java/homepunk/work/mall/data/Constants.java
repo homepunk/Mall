@@ -11,6 +11,7 @@ public interface Constants {
     }
     interface Keys {
         String KEY_MALLS = "malls";
+        String KEY_MALL = "mall";
         String KEY_BUNDLE = "bundle_key";
         String KEY_TIMESTAMP = "key_timestamp";
         String KEY_ACCESS_TOKEN = "key_access_token";

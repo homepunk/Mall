@@ -8,7 +8,7 @@ import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
  * Created by Homepunk on 24.04.2017.
  **/
 
-public interface MallFloorsView extends View {
+public interface MallFloorListView extends View {
     void onResult(List<FloorViewModel> floors);
 
     void onError(String error);

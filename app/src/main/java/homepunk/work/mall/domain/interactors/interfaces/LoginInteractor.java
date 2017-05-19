@@ -9,4 +9,6 @@ import homepunk.work.mall.domain.listeners.LoginListener;
 
 public interface LoginInteractor {
     void login(UserCredentials loginCredentials, LoginListener listener);
+
+    boolean isUserAuthenticated();
 }

@@ -7,6 +7,7 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -20,10 +21,26 @@ import static homepunk.work.mall.data.Constants.Keys.KEY_BUNDLE;
  **/
 
 public class BaseActivity extends AppCompatActivity implements View {
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
+    }
+
+    protected void showToast(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    protected Serializable getIntentExtra(String key) {
+        return getIntent().getSerializableExtra(key);
+    }
+
+    protected void addFragment(int containerId, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(containerId, fragment);
+        fragmentTransaction.commit();
     }
 
     protected void addFragmentWithExtras(int containerId, Fragment fragment, Serializable extras) {

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
 
@@ -56,7 +56,7 @@ public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.FloorHolder>
     }
 
     class FloorHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.item_floor_level)
+        @BindView(R.id.item_floor_level)
         TextView level;
 
         public FloorHolder(View root) {

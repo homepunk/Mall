@@ -44,7 +44,7 @@ public class MallListPresenterImpl extends BasePresenter<MallListView> implement
 
     @Override
     public void navigateToMallDetails(MallViewModel mall) {
-        NavigationUtils.navigateToMallDetails(view.getContext(), mall);
+        NavigationUtils.navigateToMallActivity(view.getContext(), mall);
     }
 
     private void startSyncService() {

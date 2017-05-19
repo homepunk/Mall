@@ -3,7 +3,7 @@ package homepunk.work.mall.data.repository.datasource.interfaces;
 import homepunk.work.mall.data.entity.response.MallResponse;
 import homepunk.work.mall.data.entity.response.MallSyncResponse;
 import homepunk.work.mall.data.entity.response.TypeCategoryResponse;
-import rx.Single;
+import io.reactivex.Single;
 
 /**
  * Created by Homepunk on 18.05.2017.

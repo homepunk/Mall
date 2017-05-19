@@ -24,8 +24,7 @@ import homepunk.work.mall.data.entity.ShopType;
 import homepunk.work.mall.data.entity.Type;
 import homepunk.work.mall.data.entity.TypeCategory;
 import homepunk.work.mall.data.repository.datasource.interfaces.DatabaseMallDataSource;
-import rx.Observable;
-import timber.log.Timber;
+import io.reactivex.Observable;
 
 import static homepunk.work.mall.data.database.MallContract.CategoryEntry.CONTENT_URI_CATEGORY;
 import static homepunk.work.mall.data.database.MallContract.DEFAULT_SORT_ORDER;
@@ -50,6 +49,7 @@ import static homepunk.work.mall.data.entity.Placement.PROJECTION_PLACEMENT;
 import static homepunk.work.mall.data.entity.Shop.PROJECTION_SHOP;
 import static homepunk.work.mall.data.entity.ShopType.PROJECTION_SHOP_TYPE;
 import static homepunk.work.mall.data.entity.Type.PROJECTION_TYPE;
+import static homepunk.work.mall.data.entity.interfaces.DatabaseEntity.COLUMN_ID_MALL;
 
 /**
  * Created by Homepunk on 08.05.2017.
@@ -220,8 +220,6 @@ public class LocalMallDataSourceImpl implements DatabaseMallDataSource {
 
     @Override
     public Observable<List<Mall>> getMalls() {
-        Timber.i("From Local");
-
         List<Mall> databaseMalls = new ArrayList<>();
         Cursor cursor = resolver.query(CONTENT_URI_MALL, PROJECTION_MALL, null, null, DEFAULT_SORT_ORDER);
 
@@ -257,11 +255,9 @@ public class LocalMallDataSourceImpl implements DatabaseMallDataSource {
     }
 
     @Override
-    public Observable<List<Floor>> getFloors(int mallId) {
-        Timber.i("From Local");
-
+    public Observable<List<Floor>> getMallFloors(int id) {
         List<Floor> databaseFloors = new ArrayList<>();
-        Cursor cursor = resolver.query(CONTENT_URI_FLOOR, PROJECTION_FLOOR, null, null, DEFAULT_SORT_ORDER);
+        Cursor cursor = resolver.query(CONTENT_URI_FLOOR, PROJECTION_FLOOR, COLUMN_ID_MALL + " = ?", new String[]{String.valueOf(id)}, DEFAULT_SORT_ORDER);
 
         while (cursor.moveToNext()) {
             databaseFloors.add(new Floor(cursor));

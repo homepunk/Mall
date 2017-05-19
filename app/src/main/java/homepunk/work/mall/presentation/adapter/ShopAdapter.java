@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import homepunk.work.mall.R;
 import homepunk.work.mall.presentation.viewmodel.ShopViewModel;
@@ -66,13 +66,13 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
     }
 
     class ShopHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.item_shop_image)
+        @BindView(R.id.item_shop_image)
         ImageView image;
-        @Bind(R.id.item_shop_name)
+        @BindView(R.id.item_shop_name)
         TextView name;
-        @Bind(R.id.item_shop_description)
+        @BindView(R.id.item_shop_description)
         TextView description;
-        @Bind(R.id.item_shop_progress)
+        @BindView(R.id.item_shop_progress)
         ProgressBar progress;
 
         public ShopHolder(View root) {

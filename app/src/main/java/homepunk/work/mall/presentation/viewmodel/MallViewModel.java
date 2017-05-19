@@ -1,7 +1,5 @@
 package homepunk.work.mall.presentation.viewmodel;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 import static homepunk.work.mall.data.Constants.BaseUrl.SWAGGER_IMAGE_URL;
@@ -11,30 +9,11 @@ import static homepunk.work.mall.data.Constants.BaseUrl.SWAGGER_IMAGE_URL;
  **/
 
 public class MallViewModel implements Serializable {
-    public static final String MALL_KEY_ID = "id";
-    private static final String MALL_KEY_NAME = "name";
-    private static final String MALL_KEY_IMAGE = "image";
-
-    private static final String MALL_KEY_LATITUDE = "lat";
-    private static final String MALL_KEY_LONGTITUDE = "lng";
-    private static final String MALL_KEY_DESCRIPTION = "description";
-
-    @SerializedName(MALL_KEY_ID)
     public int id;
-
-    @SerializedName(MALL_KEY_NAME)
-    public String name;
-
-    @SerializedName(MALL_KEY_DESCRIPTION)
-    public String description;
-
-    @SerializedName(MALL_KEY_LATITUDE)
     public double latitude;
-
-    @SerializedName(MALL_KEY_LONGTITUDE)
     public double longtitude;
-
-    @SerializedName(MALL_KEY_IMAGE)
+    public String name;
+    public String description;
     public String image;
 
     public MallViewModel(int id, String name, String description, double latitude, double longtitude, String image) {

@@ -10,9 +10,11 @@ import homepunk.work.mall.domain.listeners.MallListener;
 import homepunk.work.mall.domain.model.mapper.EntityToViewModelMapper;
 import homepunk.work.mall.domain.repository.MallRepository;
 import homepunk.work.mall.presentation.viewmodel.FloorViewModel;
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -28,29 +30,28 @@ public class GetFloorListInteractorImpl implements GetFloorListInteractor {
 
     @Override
     public void getFloorList(int mallid, MallListener<List<FloorViewModel>> listener) {
-        Timber.i("Get floors for mall with id: " + String.valueOf(mallid));
-
         mallRepository.getMallFloors(mallid)
-                      .flatMap(Observable::from)
-                      .map(EntityToViewModelMapper::transform)
-                      .toList()
-                      .observeOn(AndroidSchedulers.mainThread())
-                      .subscribe(new Observer<List<FloorViewModel>>() {
-                          @Override
-                          public void onCompleted() {
+                .subscribeOn(Schedulers.io())
+                .flatMap(Observable::fromIterable)
+                .map(EntityToViewModelMapper::transform)
+                .toList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<FloorViewModel>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                          }
+                    }
 
-                          @Override
-                          public void onError(Throwable error) {
-                            listener.onFailed(error);
-                          }
+                    @Override
+                    public void onSuccess(List<FloorViewModel> floorViewModels) {
+                        Timber.i("Recieved " + String.valueOf(floorViewModels.size()));
+                        listener.onSuccess(floorViewModels);
+                    }
 
-                          @Override
-                          public void onNext(List<FloorViewModel> floorViewModels) {
-                            Timber.i("Recieved " + String.valueOf(floorViewModels.size()));
-                            listener.onSuccess(floorViewModels);
-                          }
-                      });
+                    @Override
+                    public void onError(Throwable error) {
+                        listener.onFailed(error);
+                    }
+                });
     }
 }
